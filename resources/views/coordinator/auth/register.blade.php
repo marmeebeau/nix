@@ -77,8 +77,8 @@
 
                     <!-- Contact Number -->
                     <div class="field">
-                        <label for="coordinator_contact" :value="__('Contact Number')"></label>
-                        <input id="coordinator_contact" class="block mt-1 w-full" type="text" name="coordinator_contact" :value="old('coordinator_contact')" required placeholder="Contact Number" />
+                        <label for="coordinator_contactnumber" :value="__('Contact Number')"></label>
+                        <input id="coordinator_contactnumber" class="block mt-1 w-full" type="text" name="coordinator_contactnumber" :value="old('coordinator_contactnumber')" required placeholder="Contact Number" />
                     </div>
 
                     <!-- City -->

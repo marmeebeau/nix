@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->decimal('budget', 10, 2);
             $table->unsignedBigInteger('client_id');
             $table->timestamps();
-            $table->foreign('client_id')->references('client_id')->on('clients');
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
         });
 
         Event::create([

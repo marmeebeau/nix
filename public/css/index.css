@@ -196,6 +196,15 @@ section {
     gap: 1em;
 }
 
+.booking-container:has(form) {
+    max-width: 30em;
+}
+
+.booking-container form .actions {
+    justify-content: flex-end;
+    gap: 0.4em;
+}
+
 .booking-container header {
     width: 100%;
     display: flex;

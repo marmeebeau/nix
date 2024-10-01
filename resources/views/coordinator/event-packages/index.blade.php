@@ -22,7 +22,11 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Booking</h2>
+                <h2 class="title">Users</h2>
+                <div class="actions">
+                    <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
+                    <a href="" class="button outline">Download Pdf</a>
+                </div>
             </header>
 
             @if (session('success'))
@@ -39,38 +43,29 @@
             <table>
                 <thead>
                     {{-- <th>No.</th> --}}
-                    <th>Client Name</th>
-                    <th>Coordinator Name</th>
-                    <th>Event Date</th>
-                    <th>Event Description</th>
-                    <th>Event Time</th>
-                    <th>Status</th>
-                    <th>Actions</th>
+                    <th>Package Name</th>
+                    <th>Package Guest</th>
+                    <th>Package Price</th>
+                    <th>Package Type</th>
+                    <th>Package Description</th>
                 </thead>
                 <tbody>
-                    @forelse ($booking as $index => $bookingItem)
+                    @forelse ($data as $index => $dataItem)
                         <tr>
                             {{-- <td>{{ $index + 1 }}</td> --}}
-                            <td>{{ $bookingItem->client->client_fname}}</td>
-                            <td>{{ $bookingItem->coordinator->coordinator_fname}}</td>
-                            <td>{{ $bookingItem->event_date }}</td>
-                            <td>{{ $bookingItem->event_description }}</td>
-                            <td>{{ $bookingItem->event_time }}</td>
-                            <td>{{ $bookingItem->status }}</td>
+                            <td>{{ $dataItem->package_name}}</td>
+                            <td>{{ $dataItem->package_guest}}</td>
+                            <td>{{ $dataItem->package_price}}</td>
+                            <td>{{ $dataItem->package_type}}</td>
+                            <td>{{ $dataItem->package_description}}</td>
                             <td class="actions">
-                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="Confirmed">
-                                    <button type="submit" class="primary">Accept</button>
-                                </form>
+                                <a href="{{ url('/coordinator/event-packages/' . $dataItem->package_id . '/edit' }}" class="button outline">Edit</a>
 
-                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
+                                {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="Declined">
-                                    <button type="submit" class="destructive">Decline</button>
-                                </form>
+                                    @method('DELETE')
+                                    <button type="submit" class="button outline">Delete</button>
+                                </form> --}}
                             </td>
                         </tr>
                     @empty

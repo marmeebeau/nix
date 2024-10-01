@@ -40,9 +40,9 @@ class RegisteredUserController extends Controller
             'password' => ['required', 'string'],
             'coordinator_fname' => ['required', 'string', 'max:255'],
             'coordinator_lname' => ['required', 'string', 'max:255'],
-            'coordinator_birthday' => ['required', 'date'],
-            'coordinator_gender' => ['required', 'in:M,F'],
-            'coordinator_contact' => ['required', 'string', 'max:15'],
+            // 'coordinator_birthday' => ['required', 'date'],
+            // 'coordinator_gender' => ['required', 'in:M,F'],
+            'coordinator_contactnumber' => ['required', 'string', 'max:15'],
             'coordinator_city' => ['required', 'string', 'max:255'],
         ]);
 
@@ -52,9 +52,9 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->coordinator_password),
             'coordinator_fname' => $request->coordinator_fname,
             'coordinator_lname' => $request->coordinator_lname,
-            'coordinator_birthday' => $request->coordinator_birthday,
-            'coordinator_gender' => $request->coordinator_gender,
-            'coordinator_contact' => $request->coordinator_contact,
+            // 'coordinator_birthday' => $request->coordinator_birthday,
+            // 'coordinator_gender' => $request->coordinator_gender,
+            'coordinator_contactnumber' => $request->coordinator_contactnumber,
             'coordinator_city' => $request->coordinator_city,
         ]);
 

@@ -24,7 +24,7 @@
             <header>
                 <h2 class="title">Users</h2>
                 <div class="actions">
-                    <a href="{{ url('/coordinator/client-add/') }}" class="button primary">Add User</a>
+                    <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
                     <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
@@ -55,16 +55,16 @@
                             {{-- <td>{{ $index + 1 }}</td> --}}
                             <td>{{ $dataItem->client_fname}}</td>
                             <td>{{ $dataItem->client_lname}}</td>
-                            <td>{{ $dataItem->client_contact}}</td>
+                            <td>{{ $dataItem->client_phonenum}}</td>
                             <td>{{ $dataItem->client_email}}</td>
                             <td class="actions">
                                 <a href="{{ url('/coordinator/edit-client/' . $dataItem->client_id) }}" class="button outline">Edit</a>
 
-                                <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
+                                {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button outline">Delete</button>
-                                </form>
+                                </form> --}}
                             </td>
                         </tr>
                     @empty

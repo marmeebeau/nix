@@ -39,15 +39,19 @@ class ClientController extends Controller
     public function store(Request $request)
     {
         try {
-            $request->validate([
-                'status' => 'required|in:Confirmed,Declined,Pending',
+            $validatedData = $request->validate([
+            'client_username' => 'required|string|max:255|unique:clients,client_username',
+            'client_fname' => 'required|string|max:255',
+            'client_lname' => 'required|string|max:255',
+            'client_phonenum' => 'required|string|max:15',
+            'client_email' => 'required|email|unique:clients,client_email',
             ]);
+
+            Client::create($validatedData);
+            return response(redirect()->back()->with('success', 'Client added submitted successfully!'),200);
         } catch (ValidationException $e) {
             return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
         }
-
-
-        return response(redirect()->back()->with('success', 'Client added submitted successfully!'),200);
     }
 
     /**
@@ -67,9 +71,10 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function edit(Client $client)
+    public function edit(Client $client, $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return response(view('coordinator.clients.edit', compact('client')));
     }
 
     /**
@@ -79,9 +84,25 @@ class ClientController extends Controller
      * @param  \App\Models\Client  $client
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Client $client)
+    public function update(Request $request, Client $client, $id)
     {
-        //
+        try {
+            $client = Client::findOrFail($id);
+
+            $validatedData = $request->validate([
+                'client_username' => 'required|string|max:255|unique:clients,client_username',
+                'client_fname' => 'required|string|max:255',
+                'client_lname' => 'required|string|max:255',
+                'client_phonenum' => 'required|string|max:15',
+                // 'client_email' => 'required|email|unique:clients,client_email,' . $client->client_id,
+            ]);
+
+
+            $client->update($validatedData);
+            return response(redirect()->back()->with('success', 'Client update submitted successfully!'),200);
+        } catch (ValidationException $e) {
+            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
+        }
     }
 
     /**
@@ -92,9 +113,14 @@ class ClientController extends Controller
      */
     public function destroy(Client $client, $id)
     {
-        $item = Client::findOrFail($id);
-        $item->delete();
+        try {
+            $client = Client::findOrFail($id);
+            $client->delete();
 
-        return response(redirect()->back()->with('success', 'Client successfully deleted!'), 200);
+            return response(redirect()->back()->with('success', 'Client deleted submitted successfully!'),200);
+        } catch (ValidationException $e) {
+            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
+        }
+
     }
 }

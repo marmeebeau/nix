@@ -36,33 +36,39 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('/coordinator/update-client/' . $client->client_id) }}">
+            <form method="POST" action="{{ route('event-packages.store') }}" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
+                @method('POST')
+
                 <div class="fields">
                     <div class="field">
-                        <label for="client_username">{{ __('Username') }}</label>
-                        <input id="client_username" class="block mt-1 w-full" type="text" name="client_username" value="{{ old('client_username', $client->client_username) }}" required autofocus placeholder="Username" />
+                        <label for="package_name">{{ __('Package Name') }}</label>
+                        <input id="package_name" class="block mt-1 w-full" type="text" name="package_name" :value="old('package_name')" required autofocus placeholder="Package Name" />
                     </div>
 
                     <div class="field">
-                        <label for="client_fname">{{ __('First Name') }}</label>
-                        <input id="client_fname" class="block mt-1 w-full" type="text" name="client_fname" value="{{ old('client_fname', $client->client_fname) }}" required placeholder="First Name" />
+                        <label for="package_type">{{ __('Package Type') }}</label>
+                        <input id="package_type" class="block mt-1 w-full" type="text" name="package_type" :value="old('package_type')" required placeholder="Package Type" />
                     </div>
 
                     <div class="field">
-                        <label for="client_lname">{{ __('Last Name') }}</label>
-                        <input id="client_lname" class="block mt-1 w-full" type="text" name="client_lname" value="{{ old('client_lname', $client->client_lname) }}" required placeholder="Last Name" />
+                        <label for="package_description">{{ __('Package Description') }}</label>
+                        <textarea id="package_description" class="block mt-1 w-full" name="package_description" required placeholder="Package Description">{{ old('package_description') }}</textarea>
                     </div>
 
                     <div class="field">
-                        <label for="client_phonenum">{{ __('Phone Number') }}</label>
-                        <input id="client_phonenum" class="block mt-1 w-full" type="text" name="client_phonenum" value="{{ old('client_phonenum', $client->client_phonenum) }}" required placeholder="Phone Number" />
+                        <label for="package_guest">{{ __('Number of Guests') }}</label>
+                        <input id="package_guest" class="block mt-1 w-full" type="number" name="package_guest" :value="old('package_guest')" required placeholder="Number of Guests" />
                     </div>
 
                     <div class="field">
-                        <label for="client_email">{{ __('Email Address') }}</label>
-                        <input id="client_email" class="block mt-1 w-full" type="email" name="client_email" value="{{ old('client_email', $client->client_email) }}" required placeholder="Email Address" />
+                        <label for="package_price">{{ __('Package Price') }}</label>
+                        <input id="package_price" class="block mt-1 w-full" type="number" name="package_price" :value="old('package_price')" required placeholder="Package Price" />
+                    </div>
+
+                    <div class="field">
+                        <label for="package_image">{{ __('Package Image') }}</label>
+                        <input id="package_image" class="block mt-1 w-full" type="file" name="package_image" accept="image/*" required />
                     </div>
 
                     <div class="actions">
@@ -75,7 +81,6 @@
                     </div>
                 </div>
             </form>
-
         </main>
     </body>
 </html>
