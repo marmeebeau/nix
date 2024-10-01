@@ -12,6 +12,7 @@ use App\Http\Controllers\Coordinator\ClientController;
 use App\Http\Controllers\Coordinator\BookingController;
 use App\Http\Controllers\Coordinator\EventPackagesController;
 use App\Http\Controllers\Coordinator\FeedbacksController;
+use App\Http\Controllers\Coordinator\PdfController;
 use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
@@ -56,6 +57,11 @@ Route::prefix('coordinator')->middleware('auth:coordinator')->group(function () 
     Route::get('/edit-feedback/{id}', [FeedbacksController::class, 'edit'])->name('feedback.edit');
     Route::put('/update-feedback/{id}', [FeedbacksController::class, 'update'])->name('feedback.update');
     Route::delete('/feedback/{id}', [FeedbacksController::class, 'destroy'])->name('feedback.destroy');
+
+    // Receipt Generation
+    Route::get('/receipt', [PdfController::class, 'index']);
+    Route::get('/receipt-pdf/{id}', [PdfController::class, 'showReceiptDetails']);
+    Route::get('/booking-receipt/{id}', [PdfController::class, 'generateReceiptDetails'])->name('booking.receipt');
 
     Route::post('logout', [LoginController::class, 'destroy'])
                 ->name('coordinator.logout');

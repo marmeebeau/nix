@@ -17,6 +17,9 @@
                 <a href="{{ url('/coordinator/event-packages') }}">Event Packages</a>
             </li>
             <li class="nav-item">
+                <a href="{{ url('/coordinator/receipt') }}">Receipts</a>
+            </li>
+            <li class="nav-item">
                 <a href="{{ url('/coordinator/booking') }}">Booking</a>
             </li>
             <li class="nav-item">

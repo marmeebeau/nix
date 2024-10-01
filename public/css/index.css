@@ -390,3 +390,73 @@ section {
 .services-container .services-group h3 {
     color: var(--brown-500);
 }
+
+/* Receipts */
+.receipts {
+    padding: 2em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.receipts .wrapper {
+    background-color: var(--gray-100);
+    padding: 2em;
+    border: 0.6em;
+}
+
+.receipts .wrapper header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2em;
+    padding-bottom: 1em;
+    border-bottom: 1px dashed var(--brown-800);
+}
+
+.receipts .wrapper header .title {
+    font-family: "Italianno", sans-serif;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.receipts .wrapper header > span {
+    color: var(--gray-700);
+}
+
+.receipts .wrapper .booking-details,
+.receipts .wrapper .client-rating {
+    border-bottom: 1px dashed var(--brown-800);
+}
+
+.receipts .wrapper .booking-details,
+.receipts .wrapper .client-rating,
+.receipts .wrapper .details {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 0.5em;
+}
+
+.receipts .wrapper .details .detail {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.receipts .wrapper .details .detail .name {
+    text-align: left;
+    font-weight: 600;
+}
+
+.receipts .wrapper .details .detail .value {
+    text-align: end;
+    font-weight: 400;
+}
+
+.receipts .wrapper .summary {
+    padding: 3em 0;
+}

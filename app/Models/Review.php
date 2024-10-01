@@ -16,7 +16,7 @@ class Review extends Model
         'rating',
         'review_description',
         'package_id',
-        // 'booking_id',
+        'booking_id',
         'client_id'
     ];
     public function eventPackage()
@@ -24,10 +24,10 @@ class Review extends Model
         return $this->belongsTo(EventPackage::class, 'package_id');
     }
 
-    // public function bookingDetail()
-    // {
-    //     return $this->belongsTo(BookingDetail::class, 'booking_id');
-    // }
+    public function bookingDetail()
+    {
+        return $this->belongsTo(BookingDetail::class, 'booking_id');
+    }
 
     public function client()
     {

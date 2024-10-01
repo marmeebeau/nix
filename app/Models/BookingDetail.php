@@ -40,4 +40,9 @@ class BookingDetail extends Model
     {
         return $this->belongsTo(Coordinator::class, 'coordinator_id');
     }
+
+    public function review()
+    {
+        return $this->hasOne(Review::class, 'booking_id'); 
+    }
 }
