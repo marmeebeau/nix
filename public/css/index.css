@@ -460,3 +460,34 @@ section {
 .receipts .wrapper .summary {
     padding: 3em 0;
 }
+
+/* Profile */
+.profile-container form .fields {
+    padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-container form .fields .field img {
+    border-radius: 100%;
+    min-width: 12em;
+}
+
+.profile-container form .fields .details {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 0.4em;
+}
+
+.profile-container form .fields .field input {
+    width: 20em;
+}
+
+.profile-container form .fields .field.profile input,
+.profile-container form .fields .fields.profile input:focus-within {
+    border: 0;
+    outline: 0;
+}

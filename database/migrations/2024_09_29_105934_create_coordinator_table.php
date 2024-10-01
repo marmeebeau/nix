@@ -26,6 +26,7 @@ class CreateCoordinatorTable extends Migration
             $table->string('coordinator_lname');
             $table->string('coordinator_contactnumber');
             $table->string('coordinator_city');
+            $table->string('profile_image')->nullable();
             $table->timestamp('account_created')->nullable();
             $table->rememberToken();
             $table->timestamps();
@@ -41,6 +42,7 @@ class CreateCoordinatorTable extends Migration
             'coordinator_lname' => 'Renacia',
             'coordinator_contactnumber' => '09452671317',
             'coordinator_city' => 'Dumaguete',
+            'profile_image' => 'assets/images/uploads/cat_one.jpg',
             'account_created' => '2024-08-01 09:28:07',
         ]);
 
@@ -53,6 +55,7 @@ class CreateCoordinatorTable extends Migration
             'coordinator_lname' => 'Recoleta',
             'coordinator_contactnumber' => '09284926390',
             'coordinator_city' => 'Valencia',
+            'profile_image' => 'assets/images/uploads/cat_two.jpg',
             'account_created' => '2024-01-07 02:49:04',
         ]);
     }

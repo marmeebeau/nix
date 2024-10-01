@@ -25,6 +25,9 @@
             <li class="nav-item">
                 <a href="{{ url('/coordinator/feedback') }}">Feedbacks</a>
             </li>
+            <li class="nav-item">
+                <a href="{{ url('/coordinator/profile') }}">Profile</a>
+            </li>
         @else
             <li class="nav-item">
                 <a href="/welcome">Home</a>

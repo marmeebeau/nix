@@ -28,6 +28,7 @@ class Coordinator extends Authenticatable
         'coordinator_lname',
         'coordinator_contactnumber',
         'coordinator_city',
+        'profile_image',
         'account_created',
     ];
 

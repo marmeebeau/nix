@@ -27,7 +27,7 @@
                     <span class="address">1 Hibbard Avenue, Dumaguete City Negros Oriental</span>
                     <span class="website">nix-events.com</span>
                 </header>
-    
+
                 <section class="booking-details">
                     <h2>Booking Details</h2>
                     <div class="details">
@@ -61,7 +61,7 @@
                         </div>
                     </div>
                 </section>
-    
+
                 @if ($rating)
                     <section class="client-rating">
                         <div class="details">
@@ -72,7 +72,7 @@
                         </div>
                     </section>
                 @endif
-    
+
                 {{-- @if ($recommendation)
                     <section class="recommendation">
                         <h2>You Might Also Like</h2>
@@ -82,7 +82,7 @@
                         <a href="{{ route('event-packages.show', $recommendation->package_id) }}" class="button primary">View Package</a>
                     </section>
                 @endif --}}
-    
+
                 <div class="summary">
                     <p>Contact us at: nix@test.com</p>
                     <p>Visit our website: <a href="">nix.com</a></p>
