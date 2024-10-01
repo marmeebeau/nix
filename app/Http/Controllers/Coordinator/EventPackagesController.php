@@ -17,7 +17,7 @@ class EventPackagesController extends Controller
     public function index()
     {
         $data = EventPackage::orderBy('created_at', 'desc')->get();
-        return response(view('coordinator.event-package.index', compact('data')), 200);
+        return response(view('coordinator.event-packages.index', compact('data')), 200);
     }
 
     /**
@@ -27,7 +27,7 @@ class EventPackagesController extends Controller
      */
     public function create()
     {
-        return response(view('coordinator.event-package.create'), 200);
+        return response(view('coordinator.event-packages.create'), 200);
     }
 
     /**
@@ -82,7 +82,7 @@ class EventPackagesController extends Controller
     public function edit(EventPackage $eventPackage, $id)
     {
         $eventPackage = EventPackage::findOrFail($id);
-        return response(view('coordinator.event-package.edit', compact('eventPackage')));
+        return response(view('coordinator.event-packages.edit', compact('eventPackage')));
     }
 
     /**

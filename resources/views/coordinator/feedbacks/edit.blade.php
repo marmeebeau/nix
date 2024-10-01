@@ -22,7 +22,7 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Users</h2>
+                <h2 class="title">Feedbacks</h2>
             </header>
 
             @if (session('success'))
@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('feedback.update', $review->review_id) }}">
+            <form method="POST" action="{{ url('/coordinator/update-feedback/' . $review->review_id) }}">
                 @csrf
                 @method('PUT')
 

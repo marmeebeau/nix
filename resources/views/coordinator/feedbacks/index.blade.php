@@ -22,7 +22,7 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Users</h2>
+                <h2 class="title">Feedbacks</h2>
                 <div class="actions">
                     <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
                     <a href="" class="button outline">Download Pdf</a>
@@ -58,7 +58,7 @@
                             <td>{{ $dataItem->review_description }}</td>
                             <td>{{ $dataItem->rating }}</td>
                             <td class="actions">
-                                <a href="{{ url('/coordinator/feedback/' . $dataItem->package_id . '/edit' }}" class="button outline">Edit</a>
+                                <a href="{{ url('/coordinator/edit-feedback/' . $dataItem->package_id) }}" class="button outline">Edit</a>
 
                                 {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf

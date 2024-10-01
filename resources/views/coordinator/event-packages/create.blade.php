@@ -22,7 +22,7 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Users</h2>
+                <h2 class="title">Event Packages</h2>
             </header>
 
             @if (session('success'))

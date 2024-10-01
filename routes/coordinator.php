@@ -45,16 +45,16 @@ Route::prefix('coordinator')->middleware('auth:coordinator')->group(function () 
     Route::get('/event-packages', [EventPackagesController::class, 'index'])->name('event-packages.index');
     Route::get('/event-packages/create', [EventPackagesController::class, 'create'])->name('event-packages.create');
     Route::post('/event-packages', [EventPackagesController::class, 'store'])->name('event-packages.store');
-    Route::get('/event-packages/{id}/edit', [EventPackagesController::class, 'edit'])->name('event-packages.edit');
-    Route::put('/event-packages/{id}', [EventPackagesController::class, 'update'])->name('event-packages.update');
+    Route::get('/edit-event-packages/{id}', [EventPackagesController::class, 'edit'])->name('event-packages.edit');
+    Route::put('/update-event-packages/{id}', [EventPackagesController::class, 'update'])->name('event-packages.update');
     Route::delete('/event-packages/{id}', [EventPackagesController::class, 'destroy'])->name('event-packages.destroy');
 
     // Feedback
     Route::get('/feedback', [FeedbacksController::class, 'index'])->name('feedback.index');
     Route::get('/feedback/create', [FeedbacksController::class, 'create'])->name('feedback.create');
     Route::post('/feedback', [FeedbacksController::class, 'store'])->name('feedback.store');
-    Route::get('/feedback/{id}/edit', [FeedbacksController::class, 'edit'])->name('feedback.edit');
-    Route::put('/feedback/{id}', [FeedbacksController::class, 'update'])->name('feedback.update');
+    Route::get('/edit-feedback/{id}', [FeedbacksController::class, 'edit'])->name('feedback.edit');
+    Route::put('/update-feedback/{id}', [FeedbacksController::class, 'update'])->name('feedback.update');
     Route::delete('/feedback/{id}', [FeedbacksController::class, 'destroy'])->name('feedback.destroy');
 
     Route::post('logout', [LoginController::class, 'destroy'])

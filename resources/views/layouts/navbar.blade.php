@@ -20,7 +20,7 @@
                 <a href="{{ url('/coordinator/booking') }}">Booking</a>
             </li>
             <li class="nav-item">
-                <a href="{{ url('/coordinator/feedbacks') }}">Feedbacks</a>
+                <a href="{{ url('/coordinator/feedback') }}">Feedbacks</a>
             </li>
         @else
             <li class="nav-item">

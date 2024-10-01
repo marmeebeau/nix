@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Coordinator;
 
 use App\Http\Controllers\Controller;
+use App\Models\Client;
+use App\Models\EventPackage;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -16,8 +18,8 @@ class FeedbacksController extends Controller
      */
     public function index()
     {
-        $review = Review::orderBy('created_at', 'desc')->get();
-        return response(view('coordinator.booking.index', compact('booking')), 200);
+        $data = Review::orderBy('created_at', 'desc')->get();
+        return response(view('coordinator.feedbacks.index', compact('data')), 200);
     }
 
     /**
@@ -74,7 +76,9 @@ class FeedbacksController extends Controller
     public function edit(Review $review, $id)
     {
         $review = Review::findOrFail($id);
-        return response(view('coordinator.feedback.edit', compact('review')));
+        $eventPackages = EventPackage::all();
+        $clients = Client::all();
+        return response(view('coordinator.feedbacks.edit', compact('review', 'eventPackages', 'clients')));
     }
 
     /**

@@ -22,9 +22,9 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Users</h2>
+                <h2 class="title">Event Packages</h2>
                 <div class="actions">
-                    <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
+                    <a href="{{ url('/coordinator/event-packages/create') }}" class="button primary">Add Event Package</a>
                     <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
@@ -48,6 +48,7 @@
                     <th>Package Price</th>
                     <th>Package Type</th>
                     <th>Package Description</th>
+                    <th>Actions</th>
                 </thead>
                 <tbody>
                     @forelse ($data as $index => $dataItem)
@@ -59,7 +60,7 @@
                             <td>{{ $dataItem->package_type}}</td>
                             <td>{{ $dataItem->package_description}}</td>
                             <td class="actions">
-                                <a href="{{ url('/coordinator/event-packages/' . $dataItem->package_id . '/edit' }}" class="button outline">Edit</a>
+                                <a href="{{ url('/coordinator/edit-event-packages/' . $dataItem->package_id) }}" class="button outline">Edit</a>
 
                                 {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf

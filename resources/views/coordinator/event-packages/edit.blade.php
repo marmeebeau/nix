@@ -22,7 +22,7 @@
 
         <main class="booking-container">
             <header>
-                <h2 class="title">Users</h2>
+                <h2 class="title">Event Packages</h2>
             </header>
 
             @if (session('success'))
@@ -36,7 +36,7 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ route('event-packages.update', $eventPackage->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ url('/coordinator/update-event-packages/' . $eventPackage->package_id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
