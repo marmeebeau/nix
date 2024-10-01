@@ -3,19 +3,27 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Coordinator extends Model
+class Coordinator extends Authenticatable
 {
-    use HasFactory;
+    use HasFactory, Notifiable;
+
+    protected $guard = 'coordinator';
 
     protected $primaryKey = 'coordinator_id';
 
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array<int, string>
+     */
     protected $fillable = [
         'coordinator_id',
         'coordinator_username',
-        'coordinator_email',
-        'coordinator_password',
+        'email',
+        'password',
         'coordinator_fname',
         'coordinator_lname',
         'coordinator_birthday',
@@ -25,5 +33,22 @@ class Coordinator extends Model
         'account_created',
     ];
 
+    /**
+     * The attributes that should be hidden for serialization.
+     *
+     * @var array<int, string>
+     */
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
 
+    /**
+     * The attributes that should be cast.
+     *
+     * @var array<string, string>
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
 }

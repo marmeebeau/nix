@@ -16,37 +16,23 @@ class CreateEventPackagesTable extends Migration
     {
         Schema::create('event_packages', function (Blueprint $table) {
             $table->id('package_id');
+            $table->integer('package_guest');
+            $table->decimal('package_price', 8, 2);
             $table->string('package_name');
             $table->string('package_type');
-            $table->text('description');
-            $table->string('photo');
-            $table->decimal('price', 10, 2);
-            // $table->integer('guest');
-            $table->unsignedBigInteger('event_id');
+            $table->text('package_description')->nullable();
+            $table->string('package_image')->nullable();
             $table->timestamps();
-            $table->foreign('event_id')->references('event_id')->on('events');
         });
 
         EventPackage::create([
             'package_id' => 1,
-            'package_name' => 'Pearl Wedding',
-            'package_type' => 'All-in Wedding Package',
-            'description' => 'Best for 50 Guests…',
-            'photo' => 'image.jpg',
-            'price' => 165000,
-            // 'guest' => 50,
-            'event_id' => 1,
-        ]);
-
-        EventPackage::create([
-            'package_id' => 2,
-            'package_name' => 'Libra Debut',
-            'package_type' => 'All-in Debut Package',
-            'description' => 'Best for 100 Guests…',
-            'photo' => 'image.jpeg',
-            'price' => 215000,
-            // 'guest' => 100,
-            'event_id' => 2,
+            'package_guest' => 100,
+            'package_price' => 120000.00,
+            'package_name' => 'Silver Wedding Package',
+            'package_type' => 'Wedding',
+            'package_description' => 'Perfect package for small weddings with up to 100 guests.',
+            'package_image' => 'silver_package.jpg',
         ]);
     }
 

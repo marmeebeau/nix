@@ -1,0 +1,83 @@
+.login-container {
+    min-height: 100vh;
+    min-width: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.login-container .bg-img {
+    position: absolute;
+    z-index: -1;
+    height: 100%;
+    width: 100%;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+}
+
+.login-container .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em;
+    border-radius: 0.6em;
+    background-color: var(--brown-200);
+}
+
+.login-container .wrapper .logo {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form .fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.login-container form .fields .field {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4em;
+}
+
+.login-container form .fields .group {
+    display: flex;
+    gap: 0.4em;
+}
+
+.login-container form .fields .group .field {
+    flex: 1;
+}
+
+.login-container form .fields .field input {
+    padding: 0.5em;
+    border: 1px solid var(--gray-300);
+    outline: 0;
+}
+
+.login-container form .fields .field::placeholder {
+    color: var(--gray-500);
+}
+
+.login-container .wrapper form .actions .button {
+    max-width: none;
+    width: 100%;
+}
+
+.login-container .wrapper form .fields .redirect {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.4em;
+    word-wrap: wrap;
+}
+
+.login-container form .fields .field input:hover,
+.login-container form .fields .field input:focus-within {
+    border: 1px solid var(--brown-500);
+}

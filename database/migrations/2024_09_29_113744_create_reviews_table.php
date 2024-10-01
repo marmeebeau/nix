@@ -14,35 +14,35 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
+        Schema::create('package_reviews', function (Blueprint $table) {
             $table->id('review_id');
             $table->integer('rating'); // e.g., 1 to 5 stars
-            $table->text('comments')->nullable();
+            $table->text('review_description')->nullable();
             $table->unsignedBigInteger('package_id');
-            $table->unsignedBigInteger('booking_id');
+            // $table->unsignedBigInteger('booking_id');
             $table->unsignedBigInteger('client_id');
             $table->timestamps();
 
+            // $table->foreign('booking_id')->references('booking_id')->on('booking_details');
             $table->foreign('package_id')->references('package_id')->on('event_packages');
-            $table->foreign('booking_id')->references('booking_id')->on('booking_details');
             $table->foreign('client_id')->references('client_id')->on('clients');
         });
 
         Review::create([
             'review_id' => 1,
             'rating' => 5,
-            'comments' => 'Excellent service',
+            'review_description' => 'Excellent service',
             'package_id' => 1,
-            'booking_id' => 1,
+            // 'booking_id' => 1,
             'client_id' => 2,
         ]);
 
         Review::create([
             'review_id' => 2,
             'rating' => 4,
-            'comments' => 'Good, but can improve',
+            'review_description' => 'Good, but can improve',
             'package_id' => 2,
-            'booking_id' => 2,
+            // 'booking_id' => 2,
             'client_id' => 1,
         ]);
     }
@@ -54,6 +54,6 @@ class CreateReviewsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::dropIfExists('package_reviews');
     }
 }

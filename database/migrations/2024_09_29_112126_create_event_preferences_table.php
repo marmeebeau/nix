@@ -16,36 +16,24 @@ class CreateEventPreferencesTable extends Migration
     public function up()
     {
         Schema::create('event_preferences', function (Blueprint $table) {
-            $table->id('preferences_id');
+            $table->id('preference_id');
             $table->string('event_type');
-            $table->string('theme')->nullable();
-            $table->string('budget_range');
             $table->integer('guest_count');
+            $table->string('budget_range');
+            $table->string('theme');
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('event_id')->nullable();
             $table->timestamps();
-            $table->foreign('client_id')->references('client_id')->on('clients');
-            $table->foreign('event_id')->references('event_id')->on('events');
+
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
         });
 
         EventPreference::create([
-            'preferences_id' => 1,
+            'preference_id' => 1,
             'event_type' => 'Wedding',
-            'theme' => 'Rustic',
-            'budget_range' => '500000-700000',
-            'guest_count' => 100,
-            'client_id' => 2,
-            'event_id' => 1,
-        ]);
-
-        EventPreference::create([
-            'preferences_id' => 2,
-            'event_type' => 'Debut',
-            'theme' => 'Nature',
-            'budget_range' => '150000-250000',
-            'guest_count' => 100,
+            'guest_count' => 150,
+            'budget_range' => '50000-100000',
+            'theme' => 'Rustic Bohemian',
             'client_id' => 1,
-            'event_id' => 2,
         ]);
     }
 

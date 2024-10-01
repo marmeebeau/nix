@@ -13,16 +13,12 @@ class EventPackage extends Model
 
     protected $fillable = [
         'package_id',
+        'package_guest',
+        'package_price',
         'package_name',
         'package_type',
-        'description',
-        'photo',
-        'price',
-        // 'guest',
-        'event_id',
+        'package_description',
+        'package_image',
     ];
 
-    public function event() {
-        return $this->belongsTo(Event::class, 'event_id');
-    }
 }

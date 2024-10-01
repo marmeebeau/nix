@@ -17,15 +17,13 @@ class CreateBookingDetailsTable extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id('booking_id');
-            $table->string('category');
-            $table->string('location');
-            $table->date('event_date');
-            $table->time('event_time');
-            $table->text('notes')->nullable();
-            $table->string('status'); // e.g., 'Pending', 'Confirmed', 'Cancelled'
-            $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('package_id');
-            $table->unsignedBigInteger('coordinator_id');
+            $table->date('event_date')->nullable();
+            $table->text('event_description')->nullable();
+            $table->time('event_time')->nullable();
+            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled'])->default('Pending');
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->unsignedBigInteger('package_id')->nullable();
+            $table->unsignedBigInteger('coordinator_id')->nullable();
             $table->timestamps();
 
             $table->foreign('client_id')->references('client_id')->on('clients');
@@ -33,31 +31,29 @@ class CreateBookingDetailsTable extends Migration
             $table->foreign('coordinator_id')->references('coordinator_id')->on('coordinators');
         });
 
+
         BookingDetail::create([
             'booking_id' => 1,
-            'category' => 'Wedding',
-            'location' => 'Venue A',
             'event_date' => '2024-07-01',
+            'event_description' => 'Indoor Wedding at Venue A',
             'event_time' => '14:00:00',
-            'notes' => 'Indoor Wedding',
-            'status' => 'confirmed',
-            'client_id' => 2,
+            'status' => 'Confirmed',
+            'client_id' => 1,
             'package_id' => 1,
             'coordinator_id' => 1,
         ]);
 
         BookingDetail::create([
             'booking_id' => 2,
-            'category' => 'Debut',
-            'location' => 'Venue B',
             'event_date' => '2024-07-05',
+            'event_description' => 'Garden Debut at Venue B',
             'event_time' => '09:00:00',
-            'notes' => 'Garden',
-            'status' => 'pending',
+            'status' => 'Pending',
             'client_id' => 1,
             'package_id' => 2,
             'coordinator_id' => 2,
         ]);
+
     }
 
 

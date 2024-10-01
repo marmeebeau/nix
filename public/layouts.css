@@ -1,0 +1,152 @@
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 0.5em 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1em;
+  min-width: 100vw;
+  background-color: var(--brown-50);
+  overflow-y: hidden;
+}
+
+nav #menu-btn {
+  display: block;
+}
+
+nav .logo {
+  object-fit: cover;
+  aspect-ratio: none;
+  object-position: center;
+}
+
+nav header {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+nav header .title {
+  font-size: 2.5rem;
+}
+
+nav header p {
+  display: none;
+  gap: 0.6em;
+}
+
+nav header .description italic {
+  color: var(--brown-500);
+  font-size: 1.7rem;
+  overflow: hidden;
+  font-family: "Italianno", sans-serif;
+}
+
+nav .nav-items {
+  position: fixed;
+  top: 4.25em;
+  left: 0;
+  right: 0;
+  min-width: 100dvw;
+  min-height: calc(100dvh - 4.25em);
+  background-color: var(--brown-50);
+  display: none;
+  flex-direction: column;
+  padding: 1em;
+  justify-content: center;
+  gap: 2em;
+  align-items: center;
+  font-weight: 400;
+  flex-wrap: wrap;
+}
+
+nav .nav-items.active {
+  display: flex;
+}
+
+nav .nav-item a {
+  text-decoration: none;
+}
+
+nav .nav-item:hover a {
+  text-decoration: underline;
+}
+
+nav .nav-item a {
+  text-transform: uppercase;
+}
+
+nav .right-content {
+  display: flex;
+  gap: 1em;
+  align-items: center;
+}
+
+@media (min-width: 728px) {
+  nav {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  nav .nav-items {
+    padding: 0;
+    position: static;
+    flex-direction: row;
+    min-height: initial;
+    min-width: initial;
+    display: flex;
+  }
+
+  nav header {
+    text-align: center;
+  }
+
+  nav #menu-btn {
+    display: none;
+  }
+
+  nav header .description {
+    display: flex;
+  }
+}
+
+/* Footer */
+footer {
+  background-color: var(--brown-200);
+  padding: 1em 8em;
+  gap: 4em;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+footer .address,
+footer .contacts {
+  max-width: 12em;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+footer .address .title,
+footer .contacts .title {
+  font-weight: 600;
+  color: var(--brown-700);
+}
+
+footer .title {
+  text-align: center;
+  flex: 1;
+  white-space: nowrap;
+}
+
+@media (min-width: 728px) {
+  footer {
+    flex-direction: row;
+  }
+}

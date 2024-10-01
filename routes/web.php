@@ -17,8 +17,22 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
+Route::get('/portfolio', function() {
+    return view('portfolio');
+});
+
+Route::get('/services', function() {
+    return view('services');
+});
+
+
 require __DIR__.'/auth.php';
+require __DIR__.'/coordinator.php';

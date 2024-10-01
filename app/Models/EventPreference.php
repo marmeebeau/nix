@@ -16,18 +16,14 @@ class EventPreference extends Model
     protected $fillable = [
         'preferences_id',
         'event_type',
-        'theme',
-        'budget_range',
         'guest_count',
+        'budget_range',
+        'theme',
         'client_id',
-        'event_id',
     ];
 
     public function client() {
         return $this->belongsTo(Client::class, 'client_id');
     }
 
-    public function event() {
-        return $this->belongsTo(Event::class, 'event_id');
-    }
 }
