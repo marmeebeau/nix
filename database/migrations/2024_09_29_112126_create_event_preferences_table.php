@@ -24,7 +24,7 @@ class CreateEventPreferencesTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->timestamps();
 
-            $table->foreign('client_id')->references('id')->on('clients')->onDelete('cascade');
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
         });
 
         EventPreference::create([

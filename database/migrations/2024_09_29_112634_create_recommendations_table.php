@@ -16,28 +16,31 @@ class CreateRecommendationsTable extends Migration
     public function up()
     {
         Schema::create('recommendations', function (Blueprint $table) {
-            $table->id('reco_id');
+            $table->id('client_event_prefer_id');
             $table->unsignedBigInteger('client_id');
-            $table->unsignedBigInteger('preferences_id');
+            $table->unsignedBigInteger('preference_id');
             $table->unsignedBigInteger('package_id');
+            $table->string('additional_note');
             $table->timestamps();
             $table->foreign('client_id')->references('client_id')->on('clients');
-            $table->foreign('preferences_id')->references('preferences_id')->on('event_preferences');
+            $table->foreign('preference_id')->references('preference_id')->on('event_preferences');
             $table->foreign('package_id')->references('package_id')->on('event_packages');
         });
 
         Recommendation::create([
-            'reco_id' => 1,
+            'client_event_prefer_id' => 1,
+            'additional_note' => "This a recommendation.",
             'client_id' => 2,
-            'preferences_id' => 1,
+            'preference_id' => 1,
             'package_id' => 1,
         ]);
 
         Recommendation::create([
-            'reco_id' => 2,
+            'client_event_prefer_id' => 2,
+            'additional_note' => "This a recommendation.",
             'client_id' => 1,
-            'preferences_id' => 2,
-            'package_id' => 2,
+            'preference_id' => 1,
+            'package_id' => 1,
         ]);
     }
 

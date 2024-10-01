@@ -40,14 +40,14 @@ class CreateServicesTable extends Migration
             'service_id' => 3,
             'inclusion' => 'Wine',
             'quantity' => 1,
-            'package_id' => 2,
+            'package_id' => 1,
         ]);
 
         Service::create([
             'service_id' => 4,
             'inclusion' => 'Supplier Meals',
             'quantity' => 30,
-            'package_id' => 2,
+            'package_id' => 1,
         ]);
     }
 

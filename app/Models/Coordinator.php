@@ -26,9 +26,7 @@ class Coordinator extends Authenticatable
         'password',
         'coordinator_fname',
         'coordinator_lname',
-        'coordinator_birthday',
-        'coordinator_gender',
-        'coordinator_contact',
+        'coordinator_contactnumber',
         'coordinator_city',
         'account_created',
     ];

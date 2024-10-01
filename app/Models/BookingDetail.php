@@ -17,11 +17,9 @@ class BookingDetail extends Model
 
     protected $fillable = [
         'booking_id',
-        'category',
-        'location',
         'event_date',
+        'event_description',
         'event_time',
-        'notes',
         'status',
         'client_id',
         'package_id',

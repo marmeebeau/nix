@@ -16,9 +16,10 @@ class Recommendation extends Model
     protected $primaryKey = 'reco_id';
 
     protected $fillable = [
-        'reco_id',
+        'client_event_prefer_id',
+        'additional_note',
         'client_id',
-        'preferences_id',
+        'preference_id',
         'package_id',
     ];
 
@@ -29,7 +30,7 @@ class Recommendation extends Model
 
     public function eventPreference()
     {
-        return $this->belongsTo(EventPreference::class, 'preferences_id');
+        return $this->belongsTo(EventPreference::class, 'preference_id');
     }
 
     public function eventPackage()

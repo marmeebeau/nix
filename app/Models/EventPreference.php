@@ -11,10 +11,10 @@ class EventPreference extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'preferences_id';
+    protected $primaryKey = 'preference_id';
 
     protected $fillable = [
-        'preferences_id',
+        'preference_id',
         'event_type',
         'guest_count',
         'budget_range',

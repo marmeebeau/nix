@@ -14,7 +14,7 @@ class CreateReviewsTable extends Migration
      */
     public function up()
     {
-        Schema::create('package_reviews', function (Blueprint $table) {
+        Schema::create('reviews', function (Blueprint $table) {
             $table->id('review_id');
             $table->integer('rating'); // e.g., 1 to 5 stars
             $table->text('review_description')->nullable();
@@ -41,7 +41,7 @@ class CreateReviewsTable extends Migration
             'review_id' => 2,
             'rating' => 4,
             'review_description' => 'Good, but can improve',
-            'package_id' => 2,
+            'package_id' => 1,
             // 'booking_id' => 2,
             'client_id' => 1,
         ]);

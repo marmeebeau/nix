@@ -50,10 +50,9 @@ class CreateBookingDetailsTable extends Migration
             'event_time' => '09:00:00',
             'status' => 'Pending',
             'client_id' => 1,
-            'package_id' => 2,
+            'package_id' => 1,
             'coordinator_id' => 2,
         ]);
-
     }
 
 

@@ -25,20 +25,22 @@ class CreateClientsTable extends Migration
         });
 
         Client::create([
-            'client_id' => 1,
-            'client_fname' => 'Marco',
-            'client_lname' => 'Polo',
-            'client_phonenum' => '09257845621',
-            'client_email' => 'marcopolo@gmail.com',
-        ]);
-
-        Client::create([
             'client_id' => 2,
-            'client_username' => 'Jane Doe',
+            'client_username' => 'doejane',
             'client_fname' => 'Jane',
             'client_lname' => 'Doe',
             'client_phonenum' => '09122345681',
             'client_email' => 'janedoe@gmail.com',
+        ]);
+
+
+        Client::create([
+            'client_id' => 1,
+            'client_username' => 'marc',
+            'client_fname' => 'Marco',
+            'client_lname' => 'Polo',
+            'client_phonenum' => '09257845621',
+            'client_email' => 'marcopolo@gmail.com',
         ]);
     }
 
