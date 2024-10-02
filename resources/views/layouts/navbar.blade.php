@@ -51,6 +51,14 @@
                 <li class="nav-item">
                     <a href="{{ url('/dashboard') }}">Dashboard</a>
                 </li>
+                <li class="nav-item">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="nav-item">
+                            Logout
+                        </button>
+                    </form>
+                </li>
             @else
                 @auth('coordinator')
                     <li class="nav-item">

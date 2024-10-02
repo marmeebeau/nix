@@ -58,6 +58,12 @@ class RegisteredUserController extends Controller
             'coordinator_city' => $request->coordinator_city,
         ]);
 
+        User::create([
+            'name' => $request->input('coordinator_username'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password'),
+        ]);
+
         event(new Registered($coordinator));
 
         Auth::guard('coordinator')->login($coordinator);

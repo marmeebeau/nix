@@ -18,6 +18,9 @@ use App\Models\Client;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('coordinator')->middleware('guest:coordinator')->group(function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    });
     Route::get('register', [RegisteredUserController::class, 'create'])
                 ->name('coordinator.register');
 
@@ -31,6 +34,9 @@ Route::prefix('coordinator')->middleware('guest:coordinator')->group(function ()
 });
 
 Route::prefix('coordinator')->middleware('auth:coordinator')->group(function () {
+    Route::get('/welcome', function () {
+        return view('welcome');
+    });
     // Bookings
     Route::get('/booking', [BookingController::class, 'index'])->name('booking');
     Route::patch('/update-booking/{id}', [BookingController::class, 'update'])->name('update-booking');
