@@ -10,6 +10,7 @@ use App\Http\Controllers\Coordinator\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\Coordinator\ClientController;
 use App\Http\Controllers\Coordinator\BookingController;
+use App\Http\Controllers\Coordinator\ContactController;
 use App\Http\Controllers\Coordinator\EventPackagesController;
 use App\Http\Controllers\Coordinator\FeedbacksController;
 use App\Http\Controllers\Coordinator\PdfController;

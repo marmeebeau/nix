@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Coordinator\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,8 +31,21 @@ Route::get('/portfolio', function() {
     return view('portfolio');
 });
 
+Route::get('/booking', function() {
+    return view('booking');
+});
+
 Route::get('/services', function() {
     return view('services');
+});
+
+// Contact
+Route::get('/contact', [ContactController::class, 'index']);
+Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+
+Route::get('/review', function() {
+    return view('review');
 });
 
 Route::get('/go-back', function () {

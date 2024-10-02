@@ -20,6 +20,7 @@ class BookingDetail extends Model
         'event_date',
         'event_description',
         'event_time',
+        'message',
         'status',
         'client_id',
         'package_id',
@@ -43,6 +44,6 @@ class BookingDetail extends Model
 
     public function review()
     {
-        return $this->hasOne(Review::class, 'booking_id'); 
+        return $this->hasOne(Review::class, 'booking_id');
     }
 }

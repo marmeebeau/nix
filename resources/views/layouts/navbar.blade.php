@@ -33,16 +33,19 @@
                 <a href="/welcome">Home</a>
             </li>
             <li class="nav-item">
+                <a href="/booking">Booking</a>
+            </li>
+            <li class="nav-item">
                 <a href="/services">Services</a>
             </li>
             <li class="nav-item">
                 <a href="/portfolio">Portfolio</a>
             </li>
             <li class="nav-item">
-                <a href="contact.php">Reviews</a>
+                <a href="/review">Reviews</a>
             </li>
             <li class="nav-item">
-                <a href="contact.php">Contact Us</a>
+                <a href="/contact">Contact Us</a>
             </li>
         @endauth
 

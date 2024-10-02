@@ -17,13 +17,9 @@
 
     </head>
     <body class="">
-
         @include('layouts.navbar')
 
-        <main class="booking-container">
-            <header>
-                <h2 class="title">Users</h2>
-            </header>
+        <main class="contact-container">
 
             @if (session('success'))
                 <div class="alert alert-success">
@@ -36,49 +32,57 @@
                 </div>
             @endif
 
-            <form method="POST" action="{{ url('/coordinator/add-client/') }}">
+            <img src="assets/images/pic-six.png" alt="">
+
+            <form method="POST" action="{{ route('feedback.store') }}">
                 @csrf
                 @method('POST')
+                <h2 class="title">Contact Us</h2>
+
                 <div class="fields">
-                    <div class="field">
-                        <label for="client_username">{{ __('Username') }}</label>
-                        <input id="client_username" class="block mt-1 w-full" type="text" name="client_username" :value="old('client_username')" required autofocus placeholder="Username" />
-                    </div>
 
                     <div class="field">
-                        <label for="client_fname">{{ __('First Name') }}</label>
-                        <input id="client_fname" class="block mt-1 w-full" type="text" name="client_fname" :value="old('client_fname')" required placeholder="First Name" />
+                        <!-- <label for=""></label> -->
+                        <input id="first_name" name="first_name" type="text" placeholder="First Name" required>
                     </div>
-
                     <div class="field">
-                        <label for="client_lname">{{ __('Last Name') }}</label>
-                        <input id="client_lname" class="block mt-1 w-full" type="text" name="client_lname" :value="old('client_lname')" required placeholder="Last Name" />
+                        <!-- <label for=""></label> -->
+                        <input id="last_name" name="last_name" type="text" placeholder="Last Name" required>
                     </div>
-
                     <div class="field">
-                        <label for="client_phonenum">{{ __('Phone Number') }}</label>
-                        <input id="client_phonenum" class="block mt-1 w-full" type="text" name="client_phonenum" :value="old('client_phonenum')" required placeholder="Phone Number" />
+                        <!-- <label for=""></label> -->
+                        <input id="email" name="email" type="email" placeholder="Email" required>
                     </div>
-
                     <div class="field">
-                        <label for="client_email">{{ __('Email Address') }}</label>
-                        <input id="client_email" class="block mt-1 w-full" type="email" name="client_email" :value="old('client_email')" required placeholder="Email Address" />
+                        <!-- <label for=""></label> -->
+                        <input id="date" name="date" type="date" placeholder="Date of Event" required>
                     </div>
-
+                    <div class="field">
+                        <!-- <label for=""></label> -->
+                        <input id="venue" name="venue" type="text" placeholder="Reception/Celebration Venue" required>
+                    </div>
+                    <div class="field">
+                        <!-- <label for=""></label> -->
+                        <input id="budget" name="budget" type="text" placeholder="Budget for the Whole Event" required>
+                    </div>
+                    <div class="field">
+                        <!-- <label for=""></label> -->
+                        <input id="guests" name="guests" type="text" placeholder="Re-estimated Guests" required>
+                    </div>
+                    <div class="field">
+                        <!-- <label for=""></label> -->
+                        <textarea id="message" name="message" type="text" placeholder="Message" required></textarea>
+                    </div>
                     <div class="actions">
-                        <a href="{{ route('go.back') }}" class="button outline">
-                            {{ __('Go Back') }}
-                        </a>
-                        <x-button class="button primary">
-                            {{ __('Submit') }}
-                        </x-button>
+                        <button type="submit" class="primary">Inquire Now</button>
                     </div>
                 </div>
             </form>
+
+        </main>
+        @include('layouts.footer')
         <script src="{{ asset('js/index.js') }}" type="module"></script>
         <script src="{{ asset('js/menuToggle.js') }}" type="module"></script>
         <script src="{{ asset('js/radioCheckboxToggle.js') }}" type="module"></script>
-        </main>
     </body>
 </html>
-

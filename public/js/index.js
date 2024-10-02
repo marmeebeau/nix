@@ -1,8 +1,10 @@
+import { setupBooking } from "./booking.js";
 import { setupMenuToggle } from "./menuToggle.js";
 import { setupToggleOptionsEventListeners } from "./radioCheckboxToggle.js";
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Event listeners are running...");
-  setupToggleOptionsEventListeners();
-  setupMenuToggle();
+    console.log("Event listeners are running...");
+    setupToggleOptionsEventListeners();
+    setupMenuToggle();
+    setupBooking();
 });

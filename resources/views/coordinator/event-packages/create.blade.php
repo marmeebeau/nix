@@ -82,6 +82,9 @@
                 </div>
             </form>
         </main>
+        <script src="{{ asset('js/index.js') }}" type="module"></script>
+        <script src="{{ asset('js/menuToggle.js') }}" type="module"></script>
+        <script src="{{ asset('js/radioCheckboxToggle.js') }}" type="module"></script>
     </body>
 </html>
 
