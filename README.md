@@ -20,9 +20,9 @@ A website platform that allows users to be recommended suitable event packages f
 -   Run database migrations using `php artisan migrate`
 -   Run the server using `php artisan serve` and open using `http:127.0.0.1:8000`
 -   If ever you do encounter routing, view or db problems use the following:
--   use `php artisan optimize`
--   use `php artisan migrate:fresh`
--   rerun `php artisan serve`
+    -   use `php artisan optimize`
+    -   use `php artisan migrate:fresh`
+    -   rerun `php artisan serve`
 
 ## License
 
