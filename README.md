@@ -1,4 +1,4 @@
-# Nix Events and Productions
+# Nix
 
 ## Objective
 
