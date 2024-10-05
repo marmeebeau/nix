@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Coordinator\BookingController;
 use App\Http\Controllers\Coordinator\ContactController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,13 +32,12 @@ Route::get('/portfolio', function() {
     return view('portfolio');
 });
 
-Route::get('/booking', function() {
-    return view('booking');
-});
-
 Route::get('/services', function() {
     return view('services');
 });
+
+// Booking
+Route::get('/booking', [BookingController::class, 'clientBooking']);
 
 // Contact
 Route::get('/contact', [ContactController::class, 'index']);

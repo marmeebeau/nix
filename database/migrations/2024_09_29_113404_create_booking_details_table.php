@@ -18,26 +18,31 @@ class CreateBookingDetailsTable extends Migration
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id('booking_id');
             $table->date('event_date')->nullable();
-            $table->text('event_description')->nullable();
+            // $table->text('event_description')->nullable();
             $table->time('event_time')->nullable();
+            $table->string('venue')->nullable();
+            $table->string('budget')->nullable();
             $table->string('message')->nullable();
-            $table->enum('status', ['Pending', 'Confirmed', 'Declined'])->default('Pending');
+            $table->json('motifs')->nullable();
+            $table->enum('status', ['Pending', 'Confirmed', 'Declined', 'Finished'])->default('Pending');
             $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('package_id')->nullable();
             $table->unsignedBigInteger('coordinator_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('client_id')->references('client_id')->on('clients');
-            $table->foreign('package_id')->references('package_id')->on('event_packages');
-            $table->foreign('coordinator_id')->references('coordinator_id')->on('coordinators');
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
+            $table->foreign('package_id')->references('package_id')->on('event_packages')->onDelete('cascade');
+            $table->foreign('coordinator_id')->references('coordinator_id')->on('coordinators')->onDelete('cascade');
         });
 
 
         BookingDetail::create([
             'booking_id' => 1,
             'event_date' => '2024-07-01',
-            'event_description' => 'Indoor Wedding at Venue A',
+            // 'event_description' => 'Indoor Wedding at Venue A',
             'event_time' => '14:00:00',
+            'budget' => 'P12000',
+            'venue' => 'Robinsons',
             'status' => 'Confirmed',
             'client_id' => 1,
             'package_id' => 1,
@@ -47,8 +52,10 @@ class CreateBookingDetailsTable extends Migration
         BookingDetail::create([
             'booking_id' => 2,
             'event_date' => '2024-07-05',
-            'event_description' => 'Garden Debut at Venue B',
+            // 'event_description' => 'Garden Debut at Venue B',
             'event_time' => '09:00:00',
+            'budget' => 'P12000',
+            'venue' => 'Robinsons',
             'status' => 'Pending',
             'client_id' => 1,
             'package_id' => 1,

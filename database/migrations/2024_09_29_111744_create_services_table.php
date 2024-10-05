@@ -19,7 +19,7 @@ class CreateServicesTable extends Migration
             $table->integer('quantity');
             $table->unsignedBigInteger('package_id');
             $table->timestamps();
-            $table->foreign('package_id')->references('package_id')->on('event_packages');
+            $table->foreign('package_id')->references('package_id')->on('event_packages')->onDelete('cascade');
         });
 
         Service::create([

@@ -23,9 +23,9 @@ class CreateReviewsTable extends Migration
             $table->unsignedBigInteger('client_id');
             $table->timestamps();
 
-            $table->foreign('booking_id')->references('booking_id')->on('booking_details');
-            $table->foreign('package_id')->references('package_id')->on('event_packages');
-            $table->foreign('client_id')->references('client_id')->on('clients');
+            $table->foreign('booking_id')->references('booking_id')->on('booking_details')->onDelete('cascade');
+            $table->foreign('package_id')->references('package_id')->on('event_packages')->onDelete('cascade');
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
         });
 
         Review::create([

@@ -68,6 +68,13 @@
                                 <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
                                     @csrf
                                     @method('PATCH')
+                                    <input type="hidden" name="status" value="Finished">
+                                    <button type="submit" class="primary">Finished</button>
+                                </form>
+
+                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
+                                    @csrf
+                                    @method('PATCH')
                                     <input type="hidden" name="status" value="Declined">
                                     <button type="submit" class="destructive">Decline</button>
                                 </form>
