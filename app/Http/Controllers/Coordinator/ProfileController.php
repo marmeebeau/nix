@@ -72,12 +72,11 @@ class ProfileController extends Controller
     public function update(Request $request, Coordinator $coordinator, $id)
     {
         try {
-            $coordinator = Coordinator::findOrFail($id);
+            $coordinator = Coordinator::find($id);
 
             $validatedData = $request->validate([
-                'coordinator_username' => 'required|string|max:255|unique:coordinators,coordinator_username,' . $coordinator->coordinator_id,
-                'email' => 'required|email|max:255|unique:coordinators,email,' . $coordinator->coordinator_id,
-                'coordinator_fname' => 'required|string|max:255',
+                'coordinator_username' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
                 'coordinator_lname' => 'required|string|max:255',
                 'coordinator_contactnumber' => 'required|string|max:15',
                 'coordinator_city' => 'required|string|max:255',
@@ -96,6 +95,8 @@ class ProfileController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('assets/images/uploads'), $imageName);
                 $validatedData['profile_image'] = 'assets/images/uploads/' . $imageName;
+            } else {
+                $validatedData['profile_image'] = $coordinator->profile_image;
             }
 
             $coordinator->update($validatedData);

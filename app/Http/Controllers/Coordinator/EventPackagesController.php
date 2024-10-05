@@ -119,6 +119,8 @@ class EventPackagesController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('assets/images/uploads'), $imageName);
                 $validatedData['package_image'] = 'assets/images/uploads/' . $imageName;
+            } else {
+                $eventPackage['package_image'] = $eventPackage->package_image;
             }
 
             $eventPackage->update($validatedData);

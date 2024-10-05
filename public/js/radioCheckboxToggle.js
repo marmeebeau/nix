@@ -1,34 +1,19 @@
-/**
- * Checkbox and radio toggling.
- * Script for multiple selection of an element using checkboxes.
- *
- */
+const options = document.querySelectorAll(".option");
 
-/**
- * Update the selected checkbox to DOM.
- */
-function updateCheckboxOptionStateToDOM(option, newState, checkbox) {
-    option.classList.toggle("active", newState);
-    checkbox.setAttribute("checked", "");
-}
+options.forEach((option) => {
+    option.addEventListener("click", () => {
+        const checkbox = option.querySelector('input[type="checkbox"]');
 
-/**
- * Toggles the value 'active' state of the selected element based on its asociated checkbox.
- */
-function toggledCheckboxOption(option) {
-    const checkbox = option.querySelector('input[type="checkbox"]');
-    const newState = !checkbox.checked;
+        if (option.classList.contains("active")) {
+            option.classList.remove("active");
+        } else {
+            option.classList.add("active");
+        }
 
-    updateCheckboxOptionStateToDOM(option, newState, checkbox);
-}
-
-export function setupToggleOptionsEventListeners() {
-    console.log(`Toggle options event listeners are running...`);
-    const allSelectors = document.querySelectorAll(".option");
-
-    allSelectors?.forEach((selector) => {
-        selector.addEventListener("click", () => {
-            toggledCheckboxOption(selector);
-        });
+        if (checkbox.hasAttribute("checked")) {
+            checkbox.removeAttribute("checked");
+        } else {
+            checkbox.setAttribute("checked", "");
+        }
     });
-}
+});

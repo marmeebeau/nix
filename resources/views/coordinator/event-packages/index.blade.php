@@ -25,7 +25,6 @@
                 <h2 class="title">Event Packages</h2>
                 <div class="actions">
                     <a href="{{ url('/coordinator/event-packages/create') }}" class="button primary">Add Event Package</a>
-                    <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
 

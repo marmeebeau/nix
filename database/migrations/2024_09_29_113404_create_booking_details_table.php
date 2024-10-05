@@ -21,7 +21,7 @@ class CreateBookingDetailsTable extends Migration
             $table->text('event_description')->nullable();
             $table->time('event_time')->nullable();
             $table->string('message')->nullable();
-            $table->enum('status', ['Pending', 'Confirmed', 'Cancelled'])->default('Pending');
+            $table->enum('status', ['Pending', 'Confirmed', 'Declined'])->default('Pending');
             $table->unsignedBigInteger('client_id')->nullable();
             $table->unsignedBigInteger('package_id')->nullable();
             $table->unsignedBigInteger('coordinator_id')->nullable();

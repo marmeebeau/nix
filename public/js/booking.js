@@ -1,6 +1,8 @@
-const validateBookingForm = () => {};
+const form = document.getElementById(`bookingForm`);
 
-const getBookingInputs = () => {
+form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
     const firstName = document.getElementById(`first_name`).value;
     const lastName = document.getElementById(`last_name`).value;
     const date = document.getElementById(`date`).value;
@@ -9,11 +11,15 @@ const getBookingInputs = () => {
     const venue = document.getElementById(`venue`).value;
     const budget = document.getElementById(`budget`).value;
 
-    const motifs = Array.from(
-        document.querySelectorAll('input[name="motif"]:checked')
-    ).map((checkbox) => checkbox.value);
+    const motifs = [];
+    const checkboxes = document.querySelectorAll('input[name="motif"]');
+    for (let i = 0; i < checkboxes.length; i++) {
+        if (checkboxes[i].checked) {
+            motifs.push(checkboxes[i].value);
+        }
+    }
 
-    return {
+    const inputData = {
         firstName: firstName,
         lastName: lastName,
         date: date,
@@ -23,19 +29,8 @@ const getBookingInputs = () => {
         budget: budget,
         motifs: motifs,
     };
-};
 
-const handleBookingForm = async (e) => {
-    e.preventDefault();
-
-    const inputData = getBookingInputs();
-    console.table(inputData);
-};
-
-export function setupBooking() {
-    console.log("Running booking form logic..");
-
-    const form = document.getElementById(`bookingForm`);
-
-    form?.addEventListener("submit", (e) => handleBookingForm(e));
-}
+    for (const key in inputData) {
+        console.log(`${key}: ${inputData[key]}`);
+    }
+});

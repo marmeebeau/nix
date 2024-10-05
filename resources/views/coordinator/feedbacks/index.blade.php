@@ -25,7 +25,6 @@
                 <h2 class="title">Feedbacks</h2>
                 <div class="actions">
                     <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
-                    <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
 

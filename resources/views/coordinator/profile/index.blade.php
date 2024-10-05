@@ -54,10 +54,18 @@
                         <input id="coordinator_username" class="block mt-1 w-full" type="text" name="coordinator_username" value="{{ old('coordinator_username', auth('coordinator')->user()->coordinator_username) }}" required autofocus placeholder="Username" />
                     </div>
 
-
-                    <div class="field profile">
+                    <div class="field">
                         <label for="profile_image">{{ __('Profile Image') }}</label>
-                        <input id="profile_image" class="block mt-1 w-full" type="file" name="profile_image" accept="image/*" />
+                        <input
+                            id="profile_image"
+                            class="block mt-1 w-full"
+                            type="file"
+                            name="profile_image"
+                            accept="image/*"
+                            @if(auth('coordinator')->user()->profile_image)
+                                data-default-file="{{ asset(auth('coordinator')->user()->profile_image) }}"
+                            @endif
+                        />
                     </div>
 
                     <div class="field">
