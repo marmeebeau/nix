@@ -20,6 +20,7 @@ class CreateBookingDetailsTable extends Migration
             $table->date('event_date')->nullable();
             // $table->text('event_description')->nullable();
             $table->time('event_time')->nullable();
+            $table->string('guests')->nullable();
             $table->string('venue')->nullable();
             $table->string('budget')->nullable();
             $table->string('message')->nullable();
@@ -43,6 +44,7 @@ class CreateBookingDetailsTable extends Migration
             'event_time' => '14:00:00',
             'budget' => 'P12000',
             'venue' => 'Robinsons',
+            'guests' => '500',
             'status' => 'Confirmed',
             'client_id' => 1,
             'package_id' => 1,
@@ -56,6 +58,7 @@ class CreateBookingDetailsTable extends Migration
             'event_time' => '09:00:00',
             'budget' => 'P12000',
             'venue' => 'Robinsons',
+            'guests' => '500',
             'status' => 'Pending',
             'client_id' => 1,
             'package_id' => 1,

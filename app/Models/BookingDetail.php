@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Client;
 use App\Models\EventPackage;
 use App\Models\Coordinator;
+use App\Models\Review;
 
 class BookingDetail extends Model
 {
@@ -18,8 +19,10 @@ class BookingDetail extends Model
     protected $fillable = [
         'booking_id',
         'event_date',
-        // 'event_description',
         'event_time',
+        'guests',
+        'venue',
+        'budget',
         'message',
         'status',
         'client_id',

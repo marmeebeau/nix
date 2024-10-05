@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Coordinator\BookingController;
-use App\Http\Controllers\Coordinator\ContactController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 /*

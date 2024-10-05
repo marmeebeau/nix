@@ -42,7 +42,6 @@
                     <th>Client Name</th>
                     <th>Coordinator Name</th>
                     <th>Event Date</th>
-                    <th>Event Description</th>
                     <th>Event Time</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -54,7 +53,6 @@
                             <td>{{ $bookingItem->client->client_fname}}</td>
                             <td>{{ $bookingItem->coordinator->coordinator_fname}}</td>
                             <td>{{ $bookingItem->event_date }}</td>
-                            <td>{{ $bookingItem->event_description }}</td>
                             <td>{{ $bookingItem->event_time }}</td>
                             <td>{{ $bookingItem->status }}</td>
                             <td class="actions">

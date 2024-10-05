@@ -16,9 +16,9 @@ class CreateEventPackagesTable extends Migration
     {
         Schema::create('event_packages', function (Blueprint $table) {
             $table->id('package_id');
-            $table->integer('package_guest');
-            $table->string('package_name');
-            $table->string('package_type');
+            $table->string('package_guest')->nullable();
+            $table->string('package_name')->nullable();
+            $table->string('package_type')->nullable();
             $table->text('package_description')->nullable();
             $table->string('package_image')->nullable();
             $table->timestamps();
@@ -81,7 +81,7 @@ class CreateEventPackagesTable extends Migration
             'package_description' => $debutPlanningDescription,
             'package_type' => 'Wedding Planning Services',
             'package_name' => 'Full & Coordination Package',
-            'package_guest' => 500,
+            'package_guest' => "500",
         ]);
 
         EventPackage::create([
@@ -90,7 +90,7 @@ class CreateEventPackagesTable extends Migration
             'package_description' => $pearlWeddingDescription,
             'package_type' => 'All in Wedding Packages',
             'package_name' => 'Pearl Wedding Package',
-            'package_guest' => 50,
+            'package_guest' => "500",
         ]);
     }
 

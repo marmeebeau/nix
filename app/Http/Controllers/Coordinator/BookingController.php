@@ -10,6 +10,7 @@ use App\Models\ListOfServices;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Log;
 class BookingController extends Controller
 {
     /**
@@ -25,7 +26,7 @@ class BookingController extends Controller
 
     public function clientBooking() {
         $listOfServices = ListOfServices::with('package')->get();
-        return response(view('booking', compact('listOfServices')));
+        return response(view('booking', compact('listOfServices')), 200);
     }
 
     /**
@@ -129,7 +130,7 @@ class BookingController extends Controller
     {
         try {
             $request->validate([
-                'status' => 'required|in:Confirmed,Declined,Pending',
+                'status' => 'required|in:Confirmed,Declined,Pending,Finished',
             ]);
         } catch (ValidationException $e) {
             return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
