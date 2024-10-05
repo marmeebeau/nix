@@ -13,11 +13,11 @@ class PdfController extends Controller
     public function index(Request $request)
     {
         $bookings = BookingDetail::with('client', 'eventPackage')
-            ->where('status', 'Confirmed') 
-            ->whereHas('review') 
+            ->where('status', 'Confirmed')
+            ->whereHas('review')
             ->get();
 
-        return view('coordinator.receipts.index', compact('bookings')); 
+        return view('coordinator.receipts.index', compact('bookings'));
     }
 
     public function showReceiptDetails($id) {

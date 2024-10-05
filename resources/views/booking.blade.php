@@ -37,6 +37,14 @@
                             <input id="date" name="date" required type="date">
                         </div>
                     </div>
+                    <div class="group">
+                        <div class="field">
+                            <input id="email" name="email" placeholder="Email" required type="text">
+                        </div>
+                        <div class="field">
+                            <input id="phonenum" name="phonenum" placeholder="Phone Number" required type="text">
+                        </div>
+                    </div>
                 </div>
 
                 <div class="columns">
@@ -44,22 +52,28 @@
                         <div class="field">
                             <select name="event_type" id="event_type">
                                 <option value="">Choose Event Type</option>
+                                @foreach ($listOfServices as $service)
+                                    <option value="{{ $service->package->package_type }}">
+                                        {{ $service->package->package_type }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="field">
                             <select name="guests" id="guests">
                                 <option value="">Re-estimated Guests</option>
+                                @foreach ($listOfServices as $service)
+                                    <option value="{{ $service->package->package_guest }}">
+                                        {{ $service->package->package_guest }}
+                                    </option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="field">
-                            <select name="venue" id="venue">
-                                <option value="">Reception/Celebration Venue</option>
-                            </select>
+                            <input type="text" id="venue" name="venue" placeholder="Reception/Celebration Venue" required>
                         </div>
                         <div class="field">
-                            <select name="budget" id="budget">
-                                <option value="">Budget for the Whole Event</option>
-                            </select>
+                            <input type="text" id="budget" name="budget" placeholder="Budget for the Whole Event" required>
                         </div>
                     </div>
 
@@ -159,6 +173,6 @@
         <script src="{{ asset('js/index.js') }}" type="module"></script>
         <script src="{{ asset('js/menuToggle.js') }}" type="module"></script>
         <script src="{{ asset('js/booking.js') }}" type="module"></script>
-        <script src="{{ asset('js/radioCheckboxToggle.js') }}" type="module"></script>
+        <script src="{{ asset('js/checkboxToggle.js') }}" type="module"></script>
     </body>
 </html>

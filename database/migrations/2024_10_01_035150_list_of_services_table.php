@@ -29,6 +29,12 @@ class ListOfServicesTable extends Migration
             'package_id' => 1,
             'event_pkg_id' => 1,
         ]);
+
+        ListOfServices::create([
+            'list_of_service_id' => 2,
+            'package_id' => 2,
+            'event_pkg_id' => 2,
+        ]);
     }
 
     /**

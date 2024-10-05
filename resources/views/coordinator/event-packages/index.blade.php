@@ -20,12 +20,11 @@
 
         @include('layouts.navbar')
 
-        <main class="booking-container">
+        <main class="packages-container">
             <header>
                 <h2 class="title">Event Packages</h2>
                 <div class="actions">
                     <a href="{{ url('/coordinator/event-packages/create') }}" class="button primary">Add Event Package</a>
-                    <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
 
@@ -40,9 +39,39 @@
                 </div>
             @endif
 
-            <table>
+            <div class="content">
+                @foreach ($data as $dataItem)
+                    <div class="package-item">
+                        <div class="left-content">
+                            @if ($dataItem->package_image)
+                                <img src="{{ asset($dataItem->package_image) }}" alt="{{ $dataItem->package_name }}">
+                            @endif
+                            <div class="actions">
+                                <a href="{{ route('event-packages.edit', $dataItem->package_id) }}" class="button outline">Edit</a>
+
+                                <form method="POST" action="{{ route('event-packages.destroy', $dataItem->package_id) }}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="button outline">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="right-content">
+                            <div class="group">
+                                <h2 class="name">{{ $dataItem->package_name }}</h2>
+                                <span class="price">{{ $dataItem->package_price }}</span>
+                                <span class="type">{{ $dataItem->package_type }}</span>
+                            </div>
+                            <p class="description">
+                                {{ $dataItem->package_description }}
+                            </p>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+
+            {{-- <table>
                 <thead>
-                    {{-- <th>No.</th> --}}
                     <th>Package Name</th>
                     <th>Package Guest</th>
                     <th>Package Price</th>
@@ -53,7 +82,6 @@
                 <tbody>
                     @forelse ($data as $index => $dataItem)
                         <tr>
-                            {{-- <td>{{ $index + 1 }}</td> --}}
                             <td>{{ $dataItem->package_name}}</td>
                             <td>{{ $dataItem->package_guest}}</td>
                             <td>{{ $dataItem->package_price}}</td>
@@ -62,11 +90,11 @@
                             <td class="actions">
                                 <a href="{{ url('/coordinator/edit-event-packages/' . $dataItem->package_id) }}" class="button outline">Edit</a>
 
-                                {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
+                                <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button outline">Delete</button>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                     @empty
@@ -75,7 +103,7 @@
                         </tr>
                     @endforelse
                 </tbody>
-            </table>
+            </table> --}}
         </main>
         <script src="{{ asset('js/index.js') }}" type="module"></script>
         <script src="{{ asset('js/menuToggle.js') }}" type="module"></script>

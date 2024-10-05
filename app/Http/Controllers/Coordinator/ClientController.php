@@ -115,9 +115,15 @@ class ClientController extends Controller
     {
         try {
             $client = Client::findOrFail($id);
+
+            if ($client->recommendations) {
+                $client->recommendations()->delete();
+            }
+
             $client->delete();
 
-            return response(redirect()->back()->with('success', 'Client deleted submitted successfully!'),200);
+
+            return response(redirect()->back()->with('success', 'Client deleted successfully!'),200);
         } catch (ValidationException $e) {
             return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
         }

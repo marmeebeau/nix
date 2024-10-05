@@ -21,23 +21,23 @@
 
         <main class="contact-container">
 
-            @if (session('success'))
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if (session('error'))
-                <div class="alert alert-error">
-                    {{ session('error') }}
-                </div>
-            @endif
-
             <img src="assets/images/pic-six.png" alt="">
 
-            <form method="POST" action="{{ route('feedback.store') }}">
+            <form method="POST" action="{{ route('contact.store') }}">
                 @csrf
                 @method('POST')
                 <h2 class="title">Contact Us</h2>
+
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-error">
+                        {{ session('error') }}
+                    </div>
+                @endif
 
                 <div class="fields">
 
@@ -52,6 +52,10 @@
                     <div class="field">
                         <!-- <label for=""></label> -->
                         <input id="email" name="email" type="email" placeholder="Email" required>
+                    </div>
+                    <div class="field">
+                        <!-- <label for=""></label> -->
+                        <input id="phone_num" name="phone_num" type="text" placeholder="phone_num" required>
                     </div>
                     <div class="field">
                         <!-- <label for=""></label> -->

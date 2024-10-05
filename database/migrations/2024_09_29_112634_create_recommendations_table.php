@@ -22,9 +22,10 @@ class CreateRecommendationsTable extends Migration
             $table->unsignedBigInteger('package_id');
             $table->string('additional_note');
             $table->timestamps();
-            $table->foreign('client_id')->references('client_id')->on('clients');
-            $table->foreign('preference_id')->references('preference_id')->on('event_preferences');
-            $table->foreign('package_id')->references('package_id')->on('event_packages');
+
+            $table->foreign('client_id')->references('client_id')->on('clients')->onDelete('cascade');
+            $table->foreign('preference_id')->references('preference_id')->on('event_preferences')->onDelete('cascade');
+            $table->foreign('package_id')->references('package_id')->on('event_packages')->onDelete('cascade');
         });
 
         Recommendation::create([

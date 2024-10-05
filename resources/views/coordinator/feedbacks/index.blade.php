@@ -25,7 +25,6 @@
                 <h2 class="title">Feedbacks</h2>
                 <div class="actions">
                     <a href="{{ url('/coordinator/add-client/') }}" class="button primary">Add User</a>
-                    <a href="" class="button outline">Download Pdf</a>
                 </div>
             </header>
 
@@ -60,11 +59,11 @@
                             <td class="actions">
                                 <a href="{{ url('/coordinator/edit-feedback/' . $dataItem->package_id) }}" class="button outline">Edit</a>
 
-                                {{-- <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
+                                <form method="POST" action="{{ url('/coordinator/delete-client/' . $dataItem->client_id) }} }}">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="button outline">Delete</button>
-                                </form> --}}
+                                </form>
                             </td>
                         </tr>
                     @empty

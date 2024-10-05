@@ -42,7 +42,6 @@
                     <th>Client Name</th>
                     <th>Coordinator Name</th>
                     <th>Event Date</th>
-                    <th>Event Description</th>
                     <th>Event Time</th>
                     <th>Status</th>
                     <th>Actions</th>
@@ -54,7 +53,6 @@
                             <td>{{ $bookingItem->client->client_fname}}</td>
                             <td>{{ $bookingItem->coordinator->coordinator_fname}}</td>
                             <td>{{ $bookingItem->event_date }}</td>
-                            <td>{{ $bookingItem->event_description }}</td>
                             <td>{{ $bookingItem->event_time }}</td>
                             <td>{{ $bookingItem->status }}</td>
                             <td class="actions">
@@ -63,6 +61,13 @@
                                     @method('PATCH')
                                     <input type="hidden" name="status" value="Confirmed">
                                     <button type="submit" class="primary">Accept</button>
+                                </form>
+
+                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
+                                    @csrf
+                                    @method('PATCH')
+                                    <input type="hidden" name="status" value="Finished">
+                                    <button type="submit" class="primary">Finished</button>
                                 </form>
 
                                 <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
