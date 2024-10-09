@@ -34,7 +34,7 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedData = $request->validate([
             'coordinator_username' => ['required', 'string', 'max:255', 'unique:coordinators,coordinator_username'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:coordinators,email'],
             'password' => ['required', 'string'],
@@ -46,28 +46,13 @@ class RegisteredUserController extends Controller
             'coordinator_city' => ['required', 'string', 'max:255'],
         ]);
 
-        $coordinator = Coordinator::create([
-            'coordinator_username' => $request->coordinator_username,
-            'email' => "test",
-            'password' => Hash::make($request->coordinator_password),
-            'coordinator_fname' => $request->coordinator_fname,
-            'coordinator_lname' => $request->coordinator_lname,
-            // 'coordinator_birthday' => $request->coordinator_birthday,
-            // 'coordinator_gender' => $request->coordinator_gender,
-            'coordinator_contactnumber' => $request->coordinator_contactnumber,
-            'coordinator_city' => $request->coordinator_city,
-        ]);
-
-        User::create([
-            'name' => $request->input('coordinator_username'),
-            'email' => $request->input('email'),
-            'password' => $request->input('password'),
-        ]);
+        $coordinator = Coordinator::create($validatedData);
 
         event(new Registered($coordinator));
 
         Auth::guard('coordinator')->login($coordinator);
 
-        return redirect(route('/welcome'));
+        return redirect()->route('booking');
+
     }
 }

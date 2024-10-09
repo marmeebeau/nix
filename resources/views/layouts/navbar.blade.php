@@ -1,7 +1,9 @@
 <nav class="nav">
 
     <header>
-        <h1 class="title">Nix Production & Events</h1>
+        <a href="{{ url('/welcome') }}">
+            <h1 class="title">Nix Production & Events</h1>
+        </a>
         <p class="description">
             <italic>“The small details make the difference”</italic>
             <span class="normal">-Dwight D. Eisenhower</span>

@@ -25,56 +25,7 @@ class EventPackagesServicesTable extends Migration
             $table->foreign('event_pkg_id')->references('package_id')->on('event_packages')->onDelete('cascade');
         });
 
-        $debutPlanningDescription = <<<EOT
-        Inclusions:\n
-        Event Planning\n
-        Discounted Rates of Event Supplies\n
-        Monthly Meetings & Consultations\n
-        On the Day Coordination\n
-        (Dress-Up, Ceremony, & Reception)\n
-        3-4 ON THE DAY COORDINATORS\n
-
-        Notes:\n
-        Meals are not included. Client should provide meals for the coordinators.\n
-        50% Down Payment must be made upon first meet-up to secure date.\n
-        Payment through Cash / GCash / Bank Transfer are accepted.\n
-        50% of the remaining balance should be paid on the day of the event.\n
-        Down Payments are non-refundable.\n
-        Contract is provided.\n
-        EOT;
-
-        $pearlWeddingDescription = <<<EOT
-        Inclusions:\n
-        Full Planning and Coordination\n
-        Catering Services\n
-        Special Chairs for VIP Tables\n
-        Event Styling (Ceremony & Reception)\n
-        Fresh Flowers\n
-        Bridal Bouquet\n
-        Entourage Bouquets\n
-        Groom Boutonniere\n
-        Entourage Boutonnieres\n
-        Bouquet for Mothers\n
-        Lights & Sounds\n
-        LED Wall\n
-        Bridal Hair & Make-up\n
-        1 Lechon\n
-        Bridal Car\n
-        1 Van\n
-        Wedding Host\n
-        2 Tier Wedding Cake (Soft Icing)\n
-        1 Wine\n
-        30 pcs wedding invitations\n
-        50 pcs supplier meals\n
-        Photo booth (Magnetic)\n
-        Special Grooming by a Groomer\n
-        Prenuptial Photo Shoot\n
-        AVP of Prenup Photos\n
-        On the Day Photo and Video Coverage\n
-        Drone Shots\n
-        Cinematic Wedding Video Highlights (SDE)\n
-        Pica-Pica\n
-        EOT;
+        include 'list.php';
 
         EventPkgServices::create([
             'service_id' => 1,
@@ -87,9 +38,79 @@ class EventPackagesServicesTable extends Migration
         EventPkgServices::create([
             'service_id' => 2,
             'event_pkg_id' => 2,
+            'service_price' => 15000,
+            'service_name' => "On-The-Day Coordination",
+            'service_description' => $onTheDayCoordinationDescription
+        ]);
+        EventPkgServices::create([
+            'service_id' => 3,
+            'event_pkg_id' => 3,
+            'service_price' => 215000,
+            'service_name' => "Opal Wedding Package",
+            'service_description' => $opalWeddingPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 4,
+            'event_pkg_id' => 4,
             'service_price' => 165000,
             'service_name' => "Pearl Wedding Package",
-            'service_description' => $pearlWeddingDescription
+            'service_description' => $pearlWeddingPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 5,
+            'event_pkg_id' => 5,
+            'service_price' => 215000,
+            'service_name' => "Topaz Wedding Package",
+            'service_description' => $topazWeddingPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 6,
+            'event_pkg_id' => 6,
+            'service_price' => 299000,
+            'service_name' => "Ruby Wedding Package",
+            'service_description' => $rubyWeddingPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 7,
+            'event_pkg_id' => 7,
+            'service_price' => 355000,
+            'service_name' => "Diamond Wedding Package",
+            'service_description' => $diamondWeddingPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 8,
+            'event_pkg_id' => 8,
+            'service_price' => 15000,
+            'service_name' => "Event Coordination for Birthdays",
+            'service_description' => $eventCoordinationBirthdays
+        ]);
+        EventPkgServices::create([
+            'service_id' => 9,
+            'event_pkg_id' => 9,
+            'service_price' => 20000,
+            'service_name' => "Debut Full Planning & Coordination",
+            'service_description' => $debutPlanningDescription
+        ]);
+        EventPkgServices::create([
+            'service_id' => 10,
+            'event_pkg_id' => 10,
+            'service_price' => 149000,
+            'service_name' => "Aries All-In Debut Package",
+            'service_description' => $ariesEventPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 11,
+            'event_pkg_id' => 11,
+            'service_price' => 200000,
+            'service_name' => "Gemini All-In Debut Package",
+            'service_description' => $geminiEventPackage
+        ]);
+        EventPkgServices::create([
+            'service_id' => 12,
+            'event_pkg_id' => 12,
+            'service_price' => 250000,
+            'service_name' => "Libra All-In Debut Packages",
+            'service_description' => $libraEventPackage
         ]);
     }
 

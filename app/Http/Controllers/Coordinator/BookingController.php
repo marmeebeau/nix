@@ -25,8 +25,18 @@ class BookingController extends Controller
     }
 
     public function clientBooking() {
+        $uniquePackageType = EventPackage::select('package_type')
+            ->distinct()
+            ->get();
+
+        $uniquePackageGuest = EventPackage::select('package_guest')
+            ->where('package_guest', '!=', '')
+            ->distinct()
+            ->get();
+
+
         $listOfServices = ListOfServices::with('package')->get();
-        return response(view('booking', compact('listOfServices')), 200);
+        return response(view('booking', compact('listOfServices', 'uniquePackageType', 'uniquePackageGuest')), 200);
     }
 
     /**

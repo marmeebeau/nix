@@ -24,56 +24,7 @@ class CreateEventPackagesTable extends Migration
             $table->timestamps();
         });
 
-        $debutPlanningDescription = <<<EOT
-        Inclusions:\n
-        Event Planning\n
-        Discounted Rates of Event Supplies\n
-        Monthly Meetings & Consultations\n
-        On the Day Coordination\n
-        (Dress-Up, Ceremony, & Reception)\n
-        3-4 ON THE DAY COORDINATORS\n
-
-        Notes:\n
-        Meals are not included. Client should provide meals for the coordinators.\n
-        50% Down Payment must be made upon first meet-up to secure date.\n
-        Payment through Cash / GCash / Bank Transfer are accepted.\n
-        50% of the remaining balance should be paid on the day of the event.\n
-        Down Payments are non-refundable.\n
-        Contract is provided.\n
-        EOT;
-
-        $pearlWeddingDescription = <<<EOT
-        Inclusions:\n
-        Full Planning and Coordination\n
-        Catering Services\n
-        Special Chairs for VIP Tables\n
-        Event Styling (Ceremony & Reception)\n
-        Fresh Flowers\n
-        Bridal Bouquet\n
-        Entourage Bouquets\n
-        Groom Boutonniere\n
-        Entourage Boutonnieres\n
-        Bouquet for Mothers\n
-        Lights & Sounds\n
-        LED Wall\n
-        Bridal Hair & Make-up\n
-        1 Lechon\n
-        Bridal Car\n
-        1 Van\n
-        Wedding Host\n
-        2 Tier Wedding Cake (Soft Icing)\n
-        1 Wine\n
-        30 pcs wedding invitations\n
-        50 pcs supplier meals\n
-        Photo booth (Magnetic)\n
-        Special Grooming by a Groomer\n
-        Prenuptial Photo Shoot\n
-        AVP of Prenup Photos\n
-        On the Day Photo and Video Coverage\n
-        Drone Shots\n
-        Cinematic Wedding Video Highlights (SDE)\n
-        Pica-Pica\n
-        EOT;
+        include 'list.php';
 
         EventPackage::create([
             'package_id' => 1,
@@ -86,11 +37,101 @@ class CreateEventPackagesTable extends Migration
 
         EventPackage::create([
             'package_id' => 2,
-            'package_image' => 'assets/images/event-packages/ruby.jpg',
-            'package_description' => $pearlWeddingDescription,
+            'package_image' => 'assets/images/services/on_the_day_coordination.png',
+            'package_description' => $onTheDayCoordinationDescription,
+            'package_type' => 'Wedding Planning Services',
+            'package_name' => 'On-The-Day Coordination',
+            'package_guest' => "",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 3,
+            'package_image' => 'assets/images/event-packages/opal.jpg',
+            'package_description' => $opalWeddingPackage,
+            'package_type' => 'All in Wedding Packages',
+            'package_name' => 'Opal Wedding Package',
+            'package_guest' => "100",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 4,
+            'package_image' => 'assets/images/event-packages/pearl.jpg',
+            'package_description' => $pearlWeddingPackage,
             'package_type' => 'All in Wedding Packages',
             'package_name' => 'Pearl Wedding Package',
             'package_guest' => "500",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 5,
+            'package_image' => 'assets/images/event-packages/topaz.jpg',
+            'package_description' => $topazWeddingPackage,
+            'package_type' => 'All in Wedding Packages',
+            'package_name' => 'Topaz Wedding Package',
+            'package_guest' => "120",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 6,
+            'package_image' => 'assets/images/event-packages/ruby.jpg',
+            'package_description' => $rubyWeddingPackage,
+            'package_type' => 'All in Wedding Packages',
+            'package_name' => 'Ruby Wedding Package',
+            'package_guest' => "105",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 7,
+            'package_image' => 'assets/images/event-packages/diamond.jpg',
+            'package_description' => $diamondWeddingPackage,
+            'package_type' => 'All in Wedding Packages',
+            'package_name' => 'Diamond Wedding Package',
+            'package_guest' => "200",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 8,
+            'package_image' => 'assets/images/event-packages/diamond.jpg',
+            'package_description' => $eventCoordinationBirthdays,
+            'package_type' => 'Other Event Coordination for Birthdays',
+            'package_name' => 'Event Coordination for Birthdays',
+            'package_guest' => "",
+        ]);
+attributes:
+        EventPackage::create([
+            'package_id' => 9,
+            'package_image' => 'assets/images/services/debut_full_planning_coord.png',
+            'package_description' => $debutPlanningDescription ,
+            'package_type' => 'Debut Planning Services',
+            'package_name' => 'Debut Full Planning & Coordination',
+            'package_guest' => "",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 10,
+            'package_image' => 'assets/images/event-packages/aries.jpg',
+            'package_description' => $ariesEventPackage,
+            'package_type' => 'Debut Planning Services',
+            'package_name' => 'Aries All-In Debut Package',
+            'package_guest' => "100",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 11,
+            'package_image' => 'assets/images/event-packages/gemini.jpg',
+            'package_description' => $geminiEventPackage,
+            'package_type' => 'Debut Planning Services',
+            'package_name' => 'Gemini All-In Debut Package',
+            'package_guest' => "100",
+        ]);
+
+        EventPackage::create([
+            'package_id' => 12,
+            'package_image' => 'assets/images/event-packages/ruby.jpg',
+            'package_description' => $libraEventPackage,
+            'package_type' => 'Debut Planning Services',
+            'package_name' => 'Libra All-In Debut Packages',
+            'package_guest' => "",
         ]);
     }
 

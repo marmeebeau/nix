@@ -52,9 +52,9 @@
                         <div class="field">
                             <select name="event_type" id="event_type">
                                 <option value="">Choose Event Type</option>
-                                @foreach ($listOfServices as $service)
-                                    <option value="{{ $service->package->package_type }}">
-                                        {{ $service->package->package_type }}
+                                @foreach ($uniquePackageType as $package)
+                                    <option value="{{ $package->package_type }}">
+                                        {{ $package->package_type }}
                                     </option>
                                 @endforeach
                             </select>
@@ -62,9 +62,9 @@
                         <div class="field">
                             <select name="guests" id="guests">
                                 <option value="">Re-estimated Guests</option>
-                                @foreach ($listOfServices as $service)
-                                    <option value="{{ $service->package->package_guest }}">
-                                        {{ $service->package->package_guest }}
+                                @foreach ($uniquePackageGuest as $package)
+                                    <option value="{{ $package->package_guest }}">
+                                        {{ $package->package_guest }}
                                     </option>
                                 @endforeach
                             </select>

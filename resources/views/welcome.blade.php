@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <a href="" class="button primary">BOOK YOUR EVENT</a>
+                    <a href="{{ url('/booking') }}" class="button primary">BOOK YOUR EVENT</a>
                 </div>
             </section>
         </main>

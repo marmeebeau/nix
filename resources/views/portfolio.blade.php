@@ -54,7 +54,7 @@
                 </div>
 
                 <div class="actions">
-                    <a href="" class="button primary">Inquire</a>
+                    <a href="{{ url('/contact') }}" class="button primary">Inquire</a>
                 </div>
             </section>
         </main>
