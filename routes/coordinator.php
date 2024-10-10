@@ -40,8 +40,12 @@ Route::prefix('coordinator')->middleware('auth:coordinator')->group(function () 
     });
     // Bookings
     Route::get('/booking', [BookingController::class, 'index'])->name('booking');
-    Route::patch('/update-booking/{id}', [BookingController::class, 'update'])->name('update-booking');
+    Route::get('/add-booking', [BookingController::class, 'create']);
+    Route::post('/store-booking', [BookingController::class, 'store']);
+    Route::get('/edit-booking/{id}', [BookingController::class, 'edit']);
+    Route::put('/update-booking/{id}', [BookingController::class, 'update']);
 
+    Route::patch('/update-booking/status/{id}', [BookingController::class, 'updateStatus'])->name('update-status');
     //Users
     Route::get('/clients', [ClientController::class, 'index'])->name('client');
     Route::get('/add-client', [ClientController::class, 'create'])->name('add-page');

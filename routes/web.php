@@ -48,10 +48,5 @@ Route::get('/review', function() {
     return view('review');
 });
 
-Route::get('/go-back', function () {
-    return redirect()->back();
-})->name('go.back');
-
-
 require __DIR__.'/auth.php';
 require __DIR__.'/coordinator.php';

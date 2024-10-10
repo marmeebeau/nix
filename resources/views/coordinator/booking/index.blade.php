@@ -23,6 +23,9 @@
         <main class="booking-container">
             <header>
                 <h2 class="title">Booking</h2>
+                <div class="actions">
+                    <a href="{{ url('/coordinator/add-booking/') }}" class="button primary">Add Booking</a>
+                </div>
             </header>
 
             @if (session('success'))
@@ -36,6 +39,15 @@
                 </div>
             @endif
 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <table>
                 <thead>
                     {{-- <th>No.</th> --}}
@@ -56,26 +68,38 @@
                             <td>{{ $bookingItem->event_time }}</td>
                             <td>{{ $bookingItem->status }}</td>
                             <td class="actions">
-                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="Confirmed">
-                                    <button type="submit" class="primary">Accept</button>
-                                </form>
+                                <div class="actions-group">
+                                    <a href="{{ url('/coordinator/edit-booking/' . $bookingItem->booking_id) }}" class="button outline">Edit</a>
 
-                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="Finished">
-                                    <button type="submit" class="primary">Finished</button>
-                                </form>
+                                    <form method="POST" action="{{ url('/coordinator/delete-booking/' . $bookingItem->booking_id) }} }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="button outline">Delete</button>
+                                    </form>
+                                </div>
 
-                                <form method="POST" action="{{ url('/coordinator/update-booking/' . $bookingItem->booking_id) }} }}">
-                                    @csrf
-                                    @method('PATCH')
-                                    <input type="hidden" name="status" value="Declined">
-                                    <button type="submit" class="destructive">Decline</button>
-                                </form>
+                                <div class="actions-group">
+                                    <form method="POST" action="{{ url('/coordinator/update-booking/status/' . $bookingItem->booking_id) }} }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="hidden" name="status" value="Confirmed">
+                                        <button type="submit" class="primary">Accept</button>
+                                    </form>
+
+                                    <form method="POST" action="{{ url('/coordinator/update-booking/status/' . $bookingItem->booking_id) }} }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="hidden" name="status" value="Finished">
+                                        <button type="submit" class="primary">Finished</button>
+                                    </form>
+
+                                    <form method="POST" action="{{ url('/coordinator/update-booking/status/' . $bookingItem->booking_id) }} }}">
+                                        @csrf
+                                        @method('PATCH')
+                                        <input type="hidden" name="status" value="Declined">
+                                        <button type="submit" class="destructive">Decline</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     @empty

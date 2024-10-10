@@ -21,4 +21,5 @@ class EventPackage extends Model
         'package_image',
     ];
 
+
 }

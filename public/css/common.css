@@ -409,6 +409,20 @@ form .fields .actions {
     justify-content: center;
 }
 
+
+form .fields .actions:has(.actions-group) {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.4em;
+}
+
+form .fields .actions .actions-group {
+    display: flex;
+    flex-direction: row;
+    gap: 0.4em;
+}
+
 input[type="checkbox"]:checked {
     color: var(--brown-500);
 }

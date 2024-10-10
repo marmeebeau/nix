@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="actions">
-                        <a href="{{ route('go.back') }}" class="button outline">
+                        <a href="{{ url('/coordinator/feedback')  }}" class="button outline">
                             {{ __('Go Back') }}
                         </a>
                         <x-button class="button primary">

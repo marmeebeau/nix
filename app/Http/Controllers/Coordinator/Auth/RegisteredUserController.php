@@ -32,27 +32,28 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request)
-    {
-        $validatedData = $request->validate([
-            'coordinator_username' => ['required', 'string', 'max:255', 'unique:coordinators,coordinator_username'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:coordinators,email'],
-            'password' => ['required', 'string'],
-            'coordinator_fname' => ['required', 'string', 'max:255'],
-            'coordinator_lname' => ['required', 'string', 'max:255'],
-            // 'coordinator_birthday' => ['required', 'date'],
-            // 'coordinator_gender' => ['required', 'in:M,F'],
-            'coordinator_contactnumber' => ['required', 'string', 'max:15'],
-            'coordinator_city' => ['required', 'string', 'max:255'],
-        ]);
+public function store(Request $request)
+{
+    $validatedData = $request->validate([
+        'coordinator_username' => ['required', 'string', 'max:255', 'unique:coordinators,coordinator_username'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:coordinators,email'],
+        'password' => ['required', 'string', 'min:8'],
+        'coordinator_fname' => ['required', 'string', 'max:255'],
+        'coordinator_lname' => ['required', 'string', 'max:255'],
+        // 'coordinator_birthday' => ['required', 'date'],
+        // 'coordinator_gender' => ['required', 'in:M,F'],
+        'coordinator_contactnumber' => ['required', 'string', 'max:15'],
+        'coordinator_city' => ['required', 'string', 'max:255'],
+    ]);
 
-        $coordinator = Coordinator::create($validatedData);
+    $validatedData['password'] = Hash::make($validatedData['password']);
 
-        event(new Registered($coordinator));
+    $coordinator = Coordinator::create($validatedData);
 
-        Auth::guard('coordinator')->login($coordinator);
+    event(new Registered($coordinator));
 
-        return redirect()->route('booking');
+    Auth::guard('coordinator')->login($coordinator);
 
-    }
+    return redirect()->route('booking');
+}
 }

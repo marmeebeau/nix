@@ -63,7 +63,7 @@
 
                     <div class="field">
                         <label for="package_price">{{ __('Package Price') }}</label>
-                        <input id="package_price" class="block mt-1 w-full" type="number" name="package_price" value="{{ old('package_price', $eventPackage->package_price) }}" required placeholder="Package Price" />
+                        <input id="package_price" class="block mt-1 w-full" type="text" name="package_price" value="{{ old('package_price', $servicePrice) }}" required />
                     </div>
 
                     <div class="field">
@@ -79,7 +79,7 @@
                     @endif
 
                     <div class="actions">
-                        <a href="{{ route('go.back') }}" class="button outline">
+                        <a href="{{ url('/coordinator/event-packages') }}" class="button outline">
                             {{ __('Go Back') }}
                         </a>
                         <x-button class="button primary">

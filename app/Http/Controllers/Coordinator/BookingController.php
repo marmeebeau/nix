@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Coordinator;
 use App\Http\Controllers\Controller;
 use App\Models\BookingDetail;
 use App\Models\Client;
+use App\Models\Coordinator;
 use App\Models\EventPackage;
 use App\Models\ListOfServices;
 use Illuminate\Http\Request;
@@ -46,9 +47,14 @@ class BookingController extends Controller
      */
     public function create()
     {
+        $clients = Client::all();
+        $packages = EventPackage::select('package_name', 'package_id')
+            ->distinct()
+            ->get();
+        $coordinators = Coordinator::all();
 
+        return response(view('coordinator.booking.create', compact('clients', 'packages', 'coordinators')),200);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -56,6 +62,45 @@ class BookingController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
+    {
+        try {
+            $validatedData = $request->validate([
+                'event_date' => 'required|date',
+                'event_time' => 'required',
+                'guests' => 'required|string',
+                'venue' => 'required|string',
+                'budget' => 'required|string',
+                'message' => 'nullable|string',
+                'client_id' => 'required|exists:clients,client_id',
+                'package_id' => 'required|exists:event_packages,package_id',
+                'coordinator_id' => 'required|exists:coordinators,coordinator_id',
+            ]);
+
+            // dd($request->all());
+
+            // Log::info($request->all());
+            // Log::debug('Request data:', $request->all());
+
+
+            $validatedData['status'] = 'Pending';
+
+            BookingDetail::create($validatedData);
+            return response(redirect()->back()->with('success', 'Booking created successfully!'),200);
+        } catch (ValidationException $e) {
+            return response(redirect()->back()->with('error', 'Validation Error: ' . $e->getMessage() . ' | Request Input: ' . json_encode($request->all())),422);
+        } catch (\Exception $e) {
+            return response(redirect()->back()->with('error', 'General Error: ' . $e->getMessage()), 500);
+        }
+    }
+
+
+    /**
+     * Store a newly created resource in storage on the client side booking view.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeClientBooking(Request $request)
     {
         try {
             $validatedData = $request->validate([
@@ -124,11 +169,44 @@ class BookingController extends Controller
      * @param  \App\Models\BookingDetail  $bookingDetail
      * @return \Illuminate\Http\Response
      */
-    public function edit(BookingDetail $bookingDetail)
+    public function edit(BookingDetail $bookingDetail, $id)
     {
-        //
+        $booking = BookingDetail::findOrFail($id);
+        $clients = Client::all();
+        $packages = EventPackage::select('package_name', 'package_id')
+            ->distinct()
+            ->get();
+        $coordinators = Coordinator::all();
+
+        return response(view('coordinator.booking.edit', compact('booking', 'clients', 'packages', 'coordinators')), 200);
     }
 
+    public function update(Request $request, $id)
+    {
+        try {
+            $bookingDetail = BookingDetail::findOrFail($id);
+
+            $validatedData = $request->validate([
+                'event_date' => 'required|date',
+                'event_time' => 'required',
+                'guests' => 'required|string',
+                'venue' => 'required|string',
+                'budget' => 'required|string',
+                'message' => 'nullable|string',
+                'client_id' => 'required|exists:clients,client_id',
+                'package_id' => 'required|exists:event_packages,package_id',
+                'coordinator_id' => 'required|exists:coordinators,coordinator_id',
+            ]);
+
+            $bookingDetail->update($validatedData);
+
+            return redirect()->back()->with('success', 'Booking updated successfully!');
+        } catch (ValidationException $e) {
+            return redirect()->back()->with('error', 'Validation Error: ' . $e->getMessage() . ' | Request Input: ' . json_encode($request->all()))->withInput()->withErrors($e->validator->errors());
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'General Error: ' . $e->getMessage());
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -136,7 +214,7 @@ class BookingController extends Controller
      * @param  \App\Models\BookingDetail  $bookingDetail
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function updateStatus(Request $request, $id)
     {
         try {
             $request->validate([

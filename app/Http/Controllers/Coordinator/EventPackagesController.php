@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Coordinator;
 
 use App\Http\Controllers\Controller;
 use App\Models\EventPackage;
+use App\Models\EventPkgServices;
+use App\Models\ListOfServices;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
 
@@ -43,24 +45,39 @@ class EventPackagesController extends Controller
                 'package_name' => 'required|string|max:255',
                 'package_type' => 'required|string|max:255',
                 'package_description' => 'required|string',
-                'package_guest' => 'required|integer',
-                'package_price' => 'required|numeric',
+                'package_guest' => 'required|string',
                 'package_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             if ($request->hasFile('package_image')) {
                 $image = $request->file('package_image');
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
-                $image->move(public_path('assets/images/uploads'),$imageName);
-                $validatedData['package_image'] = 'public/assets/images/uploads/' . $imageName;
+                $image->move(public_path('assets/images/uploads'), $imageName);
+                $validatedData['package_image'] = 'assets/images/uploads/' . $imageName;
             }
 
-            EventPackage::create($validatedData);
-            return response(redirect()->back()->with('success', 'Event package added submitted successfully!'),200);
+            $eventPackage = EventPackage::create($validatedData);
+
+            ListOfServices::create([
+                'package_id' => $eventPackage->package_id,
+                'event_pkg_id' => $eventPackage->package_id,
+            ]);
+
+            EventPkgServices::create([
+                'event_pkg_id' => $eventPackage->package_id,
+                'service_price' => $request->input('package_price'),
+                'service_name' => $validatedData['package_name'],
+                'service_description' => $validatedData['package_description'],
+            ]);
+
+            return response(redirect()->back()->with('success', 'Event package added successfully!'), 200);
         } catch (ValidationException $e) {
-            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
+            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),422);
+        } catch (\Exception $e) {
+            return response(redirect()->back()->with('error', 'Error: ' . $e->getMessage()),500);
         }
     }
+
 
     /**
      * Display the specified resource.
@@ -82,7 +99,16 @@ class EventPackagesController extends Controller
     public function edit(EventPackage $eventPackage, $id)
     {
         $eventPackage = EventPackage::findOrFail($id);
-        return response(view('coordinator.event-packages.edit', compact('eventPackage')));
+
+        $listOfService = ListOfServices::where('package_id', $eventPackage->package_id)->first();
+
+        $servicePrice = null;
+        if ($listOfService) {
+            $eventPkgService = EventPkgServices::where('event_pkg_id', $listOfService->event_pkg_id)->first();
+            $servicePrice = $eventPkgService ? $eventPkgService->service_price : null;
+        }
+
+        return response(view('coordinator.event-packages.edit', compact('eventPackage', 'servicePrice')));
     }
 
     /**
@@ -92,7 +118,7 @@ class EventPackagesController extends Controller
      * @param  \App\Models\EventPackage  $eventPackage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, EventPackage $eventPackage, $id)
+    public function update(Request $request, $id)
     {
         try {
             $eventPackage = EventPackage::findOrFail($id);
@@ -102,12 +128,10 @@ class EventPackagesController extends Controller
                 'package_type' => 'required|string|max:255',
                 'package_description' => 'required|string',
                 'package_guest' => 'required|integer',
-                'package_price' => 'required|numeric',
                 'package_image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
             ]);
 
             if ($request->hasFile('package_image')) {
-                // Delete the old image if it exists
                 if ($eventPackage->package_image) {
                     $oldImagePath = public_path($eventPackage->package_image);
                     if (file_exists($oldImagePath)) {
@@ -119,15 +143,33 @@ class EventPackagesController extends Controller
                 $imageName = time() . '.' . $image->getClientOriginalExtension();
                 $image->move(public_path('assets/images/uploads'), $imageName);
                 $validatedData['package_image'] = 'assets/images/uploads/' . $imageName;
-            } else {
-                $eventPackage['package_image'] = $eventPackage->package_image;
             }
 
             $eventPackage->update($validatedData);
+
+            $listOfService = ListOfServices::where('package_id', $eventPackage->package_id)->first();
+            if ($listOfService) {
+                $listOfService->update([
+                    'package_id' => $eventPackage->package_id,
+                    'event_pkg_id' => $eventPackage->package_id,
+                ]);
+            }
+
+            $eventPkgService = EventPkgServices::where('event_pkg_id', $eventPackage->package_id)->first();
+            if ($eventPkgService) {
+                $eventPkgService->update([
+                    'service_price' => $request->input('package_price'),
+                    'service_name' => $validatedData['package_name'],
+                    'service_description' => $validatedData['package_description'],
+                ]);
+            }
+
             return response(redirect()->back()->with('success', 'Event package updated successfully!'), 200);
 
         } catch (ValidationException $e) {
             return response(redirect()->back()->withErrors($e->validator->errors())->withInput(), 500);
+        } catch (\Exception $e) {
+            return response(redirect()->back()->with('error', 'Error: ' . $e->getMessage()), 500);
         }
     }
 

@@ -11,6 +11,8 @@ class EventPkgServices extends Model
 
     protected $table = 'event_pkg_services';
 
+    protected $primaryKey = 'event_pkg_id';
+
     protected $fillable = [
         'service_id',
         'event_pkg_id',
