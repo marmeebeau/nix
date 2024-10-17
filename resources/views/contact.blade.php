@@ -55,23 +55,7 @@
                     </div>
                     <div class="field">
                         <!-- <label for=""></label> -->
-                        <input id="phone_num" name="phone_num" type="text" placeholder="phone_num" required>
-                    </div>
-                    <div class="field">
-                        <!-- <label for=""></label> -->
-                        <input id="date" name="date" type="date" placeholder="Date of Event" required>
-                    </div>
-                    <div class="field">
-                        <!-- <label for=""></label> -->
-                        <input id="venue" name="venue" type="text" placeholder="Reception/Celebration Venue" required>
-                    </div>
-                    <div class="field">
-                        <!-- <label for=""></label> -->
-                        <input id="budget" name="budget" type="text" placeholder="Budget for the Whole Event" required>
-                    </div>
-                    <div class="field">
-                        <!-- <label for=""></label> -->
-                        <input id="guests" name="guests" type="text" placeholder="Re-estimated Guests" required>
+                        <input id="phone_num" name="phone_num" type="text" placeholder="Contact Number" required>
                     </div>
                     <div class="field">
                         <!-- <label for=""></label> -->

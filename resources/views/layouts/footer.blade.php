@@ -13,10 +13,14 @@
         <span class="email">anaconnicam.gonzales.ict@gmail.com</span>
         <ul class="socials">
             <li class="item">
+                <a href="https://www.facebook.com/nixproductionandevents" target="_blank">
                 <img src="assets/images/Facebook.png" alt="">
+                </a>
             </li>
             <li class="item">
+                <a href="https://www.instagram.com/nixproductionandevents" target="_blank"> 
                 <img src="assets/images/Instagram.png" alt="">
+                </a>
             </li>
         </ul>
     </div>

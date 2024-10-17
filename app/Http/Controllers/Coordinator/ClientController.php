@@ -48,7 +48,7 @@ class ClientController extends Controller
             ]);
 
             Client::create($validatedData);
-            return response(redirect()->back()->with('success', 'Client added submitted successfully!'),200);
+            return redirect()->route('client')->with('success', 'Client added successfully!');
         } catch (ValidationException $e) {
             return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
         }
@@ -99,9 +99,9 @@ class ClientController extends Controller
 
 
             $client->update($validatedData);
-            return response(redirect()->back()->with('success', 'Client update submitted successfully!'),200);
+            return redirect()->route('client')->with('success', 'Client updated successfully!');
         } catch (ValidationException $e) {
-            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
+            return redirect()->back()->withErrors($e->validator->errors())->withInput();
         }
     }
 
@@ -121,12 +121,9 @@ class ClientController extends Controller
             }
 
             $client->delete();
-
-
-            return response(redirect()->back()->with('success', 'Client deleted successfully!'),200);
-        } catch (ValidationException $e) {
-            return response(redirect()->back()->withErrors($e->validator->errors())->withInput(),500);
+            return redirect()->route('client')->with('success', 'Client deleted successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'Failed to delete client'])->withInput();
         }
-
     }
 }

@@ -13,7 +13,7 @@
     <ul class="nav-items" id="nav-items">
         @auth('coordinator')
             <li class="nav-item">
-                <a href="{{ url('/coordinator/clients') }}">Clients</a>
+                <a href="{{ url('/coordinator/clients') }}">Coordinators</a>
             </li>
             <li class="nav-item">
                 <a href="{{ url('/coordinator/event-packages') }}">Event Packages</a>
@@ -29,6 +29,14 @@
             </li>
             <li class="nav-item">
                 <a href="{{ url('/coordinator/profile') }}">Profile</a>
+            </li>
+            <li class="nav-item">
+                        <form method="POST" action="{{ route('coordinator.logout') }}">
+                            @csrf
+                            <button type="submit" class="nav-item">
+                                Logout
+                            </button>
+                        </form>
             </li>
         @else
             <li class="nav-item">
@@ -50,50 +58,9 @@
                 <a href="/contact">Contact Us</a>
             </li>
         @endauth
-
-        @if (Route::has('login'))
-            @auth('web')
-                <li class="nav-item">
-                    <a href="{{ url('/dashboard') }}">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-                        <button type="submit" class="nav-item">
-                            Logout
-                        </button>
-                    </form>
-                </li>
-            @else
-                @auth('coordinator')
-                    <li class="nav-item">
-                        <form method="POST" action="{{ route('coordinator.logout') }}">
-                            @csrf
-                            <button type="submit" class="nav-item">
-                                Logout
-                            </button>
-                        </form>
-                    </li>
-                @else
-                    <li class="nav-item">
-                        <a href="{{ url('/coordinator/login') }}">Login</a>
-                    </li>
-
-                    @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a href="{{ url('/coordinator/register') }}">Register</a>
-                        </li>
-                    @endif
-                @endauth
-            @endauth
-        @endif
     </ul>
 
     <div class="right-content">
-
-        <!-- <a href="login.php" class="ghost login" aria-label="Log In">
-            <img src="assets/images/icons/user.svg" alt="User" width="20">
-        </a> -->
 
         <button class="ghost menu" id="menu-btn">
             <img src="assets/images/icons/menu.svg" id="menu-icon" alt="Menu" width="20">
